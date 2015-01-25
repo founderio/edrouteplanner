@@ -9,5 +9,9 @@ namespace EDRoutePlanner
 	{
 		public string commodity;
 		public int amount;
+
+		public Transaction()
+		{
+		}
 	}
 }

@@ -28,6 +28,13 @@ namespace EDRoutePlanner
 			public string economy;
 			public string government;
 			public string faction;
+
+			public CommodityPrice GetPrice(string commodity)
+			{
+				CommodityPrice price = null;
+				commodityData.TryGetValue(commodity, out price);
+				return price;
+			}
 		}
 
 		public enum DemandType
@@ -47,8 +54,8 @@ namespace EDRoutePlanner
 		{
 			public string commodity;
 			public DemandType demandType;
-			public uint price;
-			public uint quantity;
+			public int price;
+			public int quantity;
 		}
 
 		static DemandType[] statiV1;
@@ -172,16 +179,29 @@ namespace EDRoutePlanner
 
 						int statusAsInt = 8;
 
-						cp.demandType = parseStatusCmdrsLogV1(statusAsInt);
-
-						//TODO: parse Status
 						//TODO: respect modTime?
-						uint.TryParse(price, out cp.price);
-						uint.TryParse(quantity, out cp.quantity);
+						int.TryParse(price, out cp.price);
+						int.TryParse(quantity, out cp.quantity);
+						int.TryParse(status, out statusAsInt);
+
+						cp.demandType = parseStatusCmdrsLogV1(statusAsInt);
 					}
 				}
 			}
 		}
-		
+
+		public StationData GetStation(string system, string station)
+		{
+			SystemData systemData = null;
+			StationData stationData = null;
+
+			systems.TryGetValue(system, out systemData);
+			if (systemData != null)
+			{
+				systemData.stations.TryGetValue(station, out stationData);
+			}
+			return stationData;
+		}
+
 	}
 }

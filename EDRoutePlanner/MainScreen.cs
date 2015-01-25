@@ -6,36 +6,65 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace EDRoutePlanner
 {
 	public partial class MainScreen : Form
 	{
+		private List<Route> routes;
+		private Route currentRoute;
+
+		public class Route
+		{
+			public List<Destination> destinations;
+			public bool loopRoute = false;
+
+			public Route()
+			{
+				destinations = new List<Destination>();
+			}
+		}
+
 		private List<StationControl> stationControls;
 
-		private List<Destination> destinations;
+		
+		public int maxCargo = 4;
+		public int totalProfit = 0;
 
-		public bool loopRoute = false;
 
 		public CmdrsLogData data;
 
 		public StationSelection stationSelection;
+		public CommoditySelection commoditySelection;
 
 		public MainScreen()
 		{
-			destinations = new List<Destination>();
 			stationControls = new List<StationControl>();
 			data = new CmdrsLogData("C:\\Users\\Oliver\\Downloads\\Cmdr's Log v1.6b\\Cmdr's Log v1.6b");
 			InitializeComponent();
 			stationSelection = new StationSelection(data);
+			commoditySelection = new CommoditySelection(data);
+			loadRouteData();
+			updateDisplay();
 		}
 
 		public void updateDisplay()
 		{
-			// Cut off controls we don't need anymore
-			if (stationControls.Count > destinations.Count)
+			if (currentRoute == null)
 			{
-				for (int i = stationControls.Count - 1; i >= destinations.Count; i--)
+				if (routes.Count == 0)
+				{
+					routes.Add(new Route());
+				}
+				currentRoute = routes[0];
+			}
+			totalProfit = 0;
+			// Cut off controls we don't need anymore
+			if (stationControls.Count > currentRoute.destinations.Count)
+			{
+				for (int i = stationControls.Count - 1; i >= currentRoute.destinations.Count; i--)
 				{
 					stationControls[i].Dispose();
 					stationControls.RemoveAt(i);
@@ -43,8 +72,8 @@ namespace EDRoutePlanner
 				stationControls.TrimExcess();
 			}
 			// Add missing controls & update existing ones
-			stationControls.Capacity = destinations.Count;
-			for (int i = 0; i < destinations.Count; i++)
+			stationControls.Capacity = currentRoute.destinations.Count;
+			for (int i = 0; i < currentRoute.destinations.Count; i++)
 			{
 				StationControl ctrl;
 				if (i >= stationControls.Count)
@@ -59,14 +88,40 @@ namespace EDRoutePlanner
 					ctrl = stationControls[i];
 				}
 				ctrl.index = i;
-				ctrl.destination = destinations[i];
+				ctrl.destination = currentRoute.destinations[i];
 				ctrl.updateDisplay();
+				totalProfit += ctrl.overallProfit;
+			}
+			textBox1.Text = totalProfit.ToString();
+			saveRouteData();
+		}
+
+		public void saveRouteData()
+		{
+			XmlSerializer ser = new XmlSerializer(typeof(List<Route>));
+			TextWriter writer = new StreamWriter("routes.xml");
+			ser.Serialize(writer, routes);
+			writer.Close();
+		}
+
+		public void loadRouteData()
+		{
+			if (File.Exists("routes.xml"))
+			{
+				XmlSerializer ser = new XmlSerializer(typeof(List<Route>));
+				TextReader reader = new StreamReader("routes.xml");
+				routes = (List<Route>)ser.Deserialize(reader);
+				reader.Close();
+			}
+			if (routes == null)
+			{
+				routes = new List<Route>();
 			}
 		}
 
 		public void deleteDestination(int index)
 		{
-			destinations.RemoveAt(index);
+			currentRoute.destinations.RemoveAt(index);
 			updateDisplay();
 		}
 
@@ -74,7 +129,7 @@ namespace EDRoutePlanner
 		{
 			if (stationSelection.ShowDialog(this) == DialogResult.OK)
 			{
-				Destination dest = destinations[index];
+				Destination dest = currentRoute.destinations[index];
 				dest.system = stationSelection.selectedSystem;
 				dest.station = stationSelection.selectedStation;
 			}
@@ -88,7 +143,7 @@ namespace EDRoutePlanner
 				Destination dest = new Destination();
 				dest.system = stationSelection.selectedSystem;
 				dest.station = stationSelection.selectedStation;
-				destinations.Insert(index + 1, dest);
+				currentRoute.destinations.Insert(index + 1, dest);
 				updateDisplay();
 			}
 		}
@@ -100,9 +155,9 @@ namespace EDRoutePlanner
 
 		public Destination getNextDestination(int index)
 		{
-			if (index < destinations.Count - 1 || (loopRoute && index == destinations.Count - 1))
+			if (index < currentRoute.destinations.Count - 1 || (currentRoute.loopRoute && index == currentRoute.destinations.Count - 1))
 			{
-				return destinations[index + 1];
+				return currentRoute.destinations[index + 1];
 			}
 			else
 			{
@@ -113,7 +168,7 @@ namespace EDRoutePlanner
 		private void btnAddDestination_Click(object sender, EventArgs e)
 		{
 			// Insert destination at last index
-			insertDestination(destinations.Count - 1);
+			insertDestination(currentRoute.destinations.Count - 1);
 		}
 	}
 }

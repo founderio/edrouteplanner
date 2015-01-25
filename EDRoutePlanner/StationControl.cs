@@ -12,6 +12,7 @@ namespace EDRoutePlanner
 	public partial class StationControl : UserControl
 	{
 		public int index = 0;
+		public int overallProfit = 0;
 		public Destination destination;
 
 		public MainScreen mainScreen;
@@ -26,7 +27,57 @@ namespace EDRoutePlanner
 			lblStationName.Text = destination.station;
 			lblSystemName.Text = destination.system;
 
-			//TODO: update transaction list
+			listView1.Items.Clear();
+			overallProfit = 0;
+
+			Destination nextDestination = mainScreen.getNextDestination(index);
+			CmdrsLogData.StationData stationData = mainScreen.data.GetStation(destination.system, destination.station);
+			CmdrsLogData.StationData nextStationData = null;
+
+			if (nextDestination != null)
+			{
+				nextStationData = mainScreen.data.GetStation(nextDestination.system, nextDestination.station);
+			}
+
+			foreach (Transaction transaction in destination.transactions)
+			{
+				int profitPer = 0;
+
+				if (stationData != null && nextStationData != null)
+				{
+					CmdrsLogData.CommodityPrice ourPrice = stationData.GetPrice(transaction.commodity);
+					CmdrsLogData.CommodityPrice theirPrice = nextStationData.GetPrice(transaction.commodity);
+					//TODO: Check Demand types?
+					if (ourPrice != null && theirPrice != null && ourPrice.price > 0 && theirPrice.price > 0)
+					{
+						profitPer = theirPrice.price - ourPrice.price;
+					}
+				}
+
+				int profit = profitPer * transaction.amount;
+				overallProfit += profit;
+				ListViewItem li = new ListViewItem(new string[] {
+					transaction.commodity,
+					transaction.amount.ToString(),
+					profitPer.ToString(),
+					profit.ToString()
+				});
+
+				if (profit == 0)
+				{
+					li.BackColor = Color.Yellow;
+				}
+				else if (profit < 0)
+				{
+					li.BackColor = Color.Red;
+				}
+				else
+				{
+					li.BackColor = Color.Green;
+				}
+
+				listView1.Items.Add(li);
+			}
 		}
 
 		private void btnDelDestination_Click(object sender, EventArgs e)
@@ -34,7 +85,12 @@ namespace EDRoutePlanner
 			mainScreen.deleteDestination(index);
 		}
 
-		private void btnEditDestination_Click(object sender, EventArgs e)
+		private void lblStationName_DoubleClick(object sender, EventArgs e)
+		{
+			mainScreen.editDestination(index);
+		}
+
+		private void pbStationImage_DoubleClick(object sender, EventArgs e)
 		{
 			mainScreen.editDestination(index);
 		}
@@ -51,12 +107,27 @@ namespace EDRoutePlanner
 
 		private void btnAddTransaction_Click(object sender, EventArgs e)
 		{
-			//TODO: Implement
+			if (mainScreen.commoditySelection.ShowDialog(mainScreen) == DialogResult.OK)
+			{
+				Transaction ta = new Transaction();
+				ta.amount = mainScreen.commoditySelection.selectedAmount;
+				if (ta.amount == 0)
+				{
+					ta.amount = mainScreen.maxCargo;
+				}
+				ta.commodity = mainScreen.commoditySelection.selectedCommodity;
+				destination.transactions.Add(ta);
+				mainScreen.updateDisplay();
+			}
 		}
 
 		private void btnDelTransaction_Click(object sender, EventArgs e)
 		{
-			//TODO: Implement
+			if (listView1.SelectedIndices.Count > 0)
+			{
+				destination.transactions.RemoveAt(listView1.SelectedIndices[0]);
+				mainScreen.updateDisplay();
+			}
 		}
 	}
 }

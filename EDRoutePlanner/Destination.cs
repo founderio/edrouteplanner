@@ -10,6 +10,11 @@ namespace EDRoutePlanner
 		public string system;
 		public string station;
 
+		public List<Transaction> transactions;
 
+		public Destination()
+		{
+			transactions = new List<Transaction>();
+		}
 	}
 }

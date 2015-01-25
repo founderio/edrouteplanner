@@ -108,8 +108,15 @@ namespace EDRoutePlanner
 
 		private void processRegularLine(string line, Section currentSection)
 		{
-			// Match for "key = value", Quotes optional, ignores space around the '='
-			Match match = Regex.Match(line, "^([a-zA-Z0-9]+)\\s*=\\s*\"?(.*)\"?$");
+			// Match for 'key = "value"', ignores space around the '='
+			Match match = Regex.Match(line, "^([a-zA-Z0-9]+)\\s*=\\s*\"(.*)\"$");
+			if (match.Success)
+			{
+				currentSection.dictionary[match.Groups[1].Value] = match.Groups[2].Value;
+				return;
+			}
+			// Match for 'key = value', unquoted, ignores space around the '='
+			match = Regex.Match(line, "^([a-zA-Z0-9]+)\\s*=\\s*(.*)$");
 			if (match.Success)
 			{
 				currentSection.dictionary[match.Groups[1].Value] = match.Groups[2].Value;
