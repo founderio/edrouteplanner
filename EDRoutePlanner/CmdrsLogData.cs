@@ -6,57 +6,10 @@ using System.IO;
 
 namespace EDRoutePlanner
 {
-	public class CmdrsLogData
+	public class CmdrsLogData : IDataSourceStations, IDataSourceCommodities
 	{
 		private CmdrsLogDataReader readerCommodityData;
 		private CmdrsLogDataReader readerSystemData;
-
-		public IDictionary<string, string[]> commodities;
-		public string[] allCommodities;
-		public IDictionary<string, SystemData> systems;
-
-		public class SystemData
-		{
-			public string name;
-			public IDictionary<string, StationData> stations;
-		}
-
-		public class StationData
-		{
-			public string name;
-			public IDictionary<string, CommodityPrice> commodityData;
-			public string economy;
-			public string government;
-			public string faction;
-
-			public CommodityPrice GetPrice(string commodity)
-			{
-				CommodityPrice price = null;
-				commodityData.TryGetValue(commodity, out price);
-				return price;
-			}
-		}
-
-		public enum DemandType
-		{
-			LowDemand,
-			MediumDemand,
-			HighDemand,
-			LowSupply,
-			MediumSupply,
-			HighSupply,
-			None,
-			Illegal,
-			NotSet
-		}
-
-		public class CommodityPrice
-		{
-			public string commodity;
-			public DemandType demandType;
-			public int price;
-			public int quantity;
-		}
 
 		static DemandType[] statiV1;
 
@@ -91,38 +44,13 @@ namespace EDRoutePlanner
 
 			readerCommodityData = new CmdrsLogDataReader(pathCommodityData);
 			readerSystemData = new CmdrsLogDataReader(pathSystemData);
-
-			commodities = new Dictionary<string, string[]>();
-			systems = new Dictionary<string, SystemData>();
-
-			reparse();
 		}
 
-		public void reload()
+		public void reloadStations(Data data)
 		{
-			readerCommodityData.reload();
-			readerSystemData.reload();
-
-			reparse();
-		}
-
-		private void reparse()
-		{
-			List<string> allCommodities = new List<string>();
-
-			foreach (string commodityGroup in readerCommodityData.rootSection.subsections.Keys)
-			{
-				CmdrsLogDataReader.Section groupSection = readerCommodityData.rootSection.subsections[commodityGroup];
-
-				allCommodities.AddRange(groupSection.textContent);
-				commodities[commodityGroup] = groupSection.textContent.ToArray();
-			}
-
-			this.allCommodities = allCommodities.ToArray();
-
 			//TODO: Respect saveVersion!
 
-			systems.Clear();
+			data.systems.Clear();
 
 			/*
 			 * Systems
@@ -134,7 +62,7 @@ namespace EDRoutePlanner
 				SystemData sysData = new SystemData();
 				sysData.stations = new Dictionary<string, StationData>();
 				sysData.name = system;
-				systems[system] = sysData;
+				data.systems[system] = sysData;
 
 				/*
 				 * Stations
@@ -190,17 +118,19 @@ namespace EDRoutePlanner
 			}
 		}
 
-		public StationData GetStation(string system, string station)
+		public void reloadCommodities(Data data)
 		{
-			SystemData systemData = null;
-			StationData stationData = null;
+			List<string> allCommodities = new List<string>();
 
-			systems.TryGetValue(system, out systemData);
-			if (systemData != null)
+			foreach (string commodityGroup in readerCommodityData.rootSection.subsections.Keys)
 			{
-				systemData.stations.TryGetValue(station, out stationData);
+				CmdrsLogDataReader.Section groupSection = readerCommodityData.rootSection.subsections[commodityGroup];
+
+				allCommodities.AddRange(groupSection.textContent);
+				data.commodities[commodityGroup] = groupSection.textContent.ToArray();
 			}
-			return stationData;
+
+			data.allCommodities = allCommodities.ToArray();
 		}
 
 	}

@@ -14,9 +14,9 @@ namespace EDRoutePlanner
 		public string selectedSystem;
 		public string selectedStation;
 
-		public CmdrsLogData data;
+		public Data data;
 
-		public StationSelection(CmdrsLogData data)
+		public StationSelection(Data data)
 		{
 			this.data = data;
 			InitializeComponent();
@@ -27,10 +27,10 @@ namespace EDRoutePlanner
 		{
 			listView1.Items.Clear();
 			listView1.Groups.Clear();
-			foreach(CmdrsLogData.SystemData system in data.systems.Values) {
+			foreach(SystemData system in data.systems.Values) {
 				ListViewGroup group = listView1.Groups.Add(system.name, system.name);
 				
-				foreach (CmdrsLogData.StationData station in system.stations.Values)
+				foreach (StationData station in system.stations.Values)
 				{
 					listView1.Items.Add(new ListViewItem(station.name, group));
 				}

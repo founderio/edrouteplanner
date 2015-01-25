@@ -31,8 +31,8 @@ namespace EDRoutePlanner
 			overallProfit = 0;
 
 			Destination nextDestination = mainScreen.getNextDestination(index);
-			CmdrsLogData.StationData stationData = mainScreen.data.GetStation(destination.system, destination.station);
-			CmdrsLogData.StationData nextStationData = null;
+			StationData stationData = mainScreen.data.GetStation(destination.system, destination.station);
+			StationData nextStationData = null;
 
 			if (nextDestination != null)
 			{
@@ -45,8 +45,8 @@ namespace EDRoutePlanner
 
 				if (stationData != null && nextStationData != null)
 				{
-					CmdrsLogData.CommodityPrice ourPrice = stationData.GetPrice(transaction.commodity);
-					CmdrsLogData.CommodityPrice theirPrice = nextStationData.GetPrice(transaction.commodity);
+					CommodityPrice ourPrice = stationData.GetPrice(transaction.commodity);
+					CommodityPrice theirPrice = nextStationData.GetPrice(transaction.commodity);
 					//TODO: Check Demand types?
 					if (ourPrice != null && theirPrice != null && ourPrice.price > 0 && theirPrice.price > 0)
 					{

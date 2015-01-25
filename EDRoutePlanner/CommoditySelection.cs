@@ -14,9 +14,9 @@ namespace EDRoutePlanner
 		public string selectedCommodity;
 		public int selectedAmount;
 
-		public CmdrsLogData data;
+		public Data data;
 
-		public CommoditySelection(CmdrsLogData data)
+		public CommoditySelection(Data data)
 		{
 			this.data = data;
 			InitializeComponent();

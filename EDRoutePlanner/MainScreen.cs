@@ -34,7 +34,7 @@ namespace EDRoutePlanner
 		public int totalProfit = 0;
 
 
-		public CmdrsLogData data;
+		public Data data;
 
 		public StationSelection stationSelection;
 		public CommoditySelection commoditySelection;
@@ -42,7 +42,8 @@ namespace EDRoutePlanner
 		public MainScreen()
 		{
 			stationControls = new List<StationControl>();
-			data = new CmdrsLogData("C:\\Users\\Oliver\\Downloads\\Cmdr's Log v1.6b\\Cmdr's Log v1.6b");
+			CmdrsLogData cmdrsLogData = new CmdrsLogData("C:\\Users\\Oliver\\Downloads\\Cmdr's Log v1.6b\\Cmdr's Log v1.6b");
+			data = new Data(cmdrsLogData, cmdrsLogData);
 			InitializeComponent();
 			stationSelection = new StationSelection(data);
 			commoditySelection = new CommoditySelection(data);
