@@ -43,7 +43,8 @@ namespace EDRoutePlanner
 		{
 			stationControls = new List<StationControl>();
 			CmdrsLogData cmdrsLogData = new CmdrsLogData("C:\\Users\\Oliver\\Downloads\\Cmdr's Log v1.6b\\Cmdr's Log v1.6b");
-			data = new Data(cmdrsLogData, cmdrsLogData);
+			RegulatedNoiseData regulatedNoiseData = new RegulatedNoiseData("C:\\Users\\Oliver\\Downloads\\RegulatedNoise.v1.83\\AutoSave.csv");
+			data = new Data(regulatedNoiseData, cmdrsLogData);
 			InitializeComponent();
 			stationSelection = new StationSelection(data);
 			commoditySelection = new CommoditySelection(data);

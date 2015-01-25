@@ -59,9 +59,7 @@ namespace EDRoutePlanner
 			{
 				CmdrsLogDataReader.Section systemSection = readerSystemData.rootSection.subsections[system];
 
-				SystemData sysData = new SystemData();
-				sysData.stations = new Dictionary<string, StationData>();
-				sysData.name = system;
+				SystemData sysData = new SystemData(system);
 				data.systems[system] = sysData;
 
 				/*
@@ -71,9 +69,7 @@ namespace EDRoutePlanner
 				{
 					CmdrsLogDataReader.Section stationSection = systemSection.subsections[station];
 
-					StationData stationData = new StationData();
-					stationData.name = station;
-					stationData.commodityData = new Dictionary<string, CommodityPrice>();
+					StationData stationData = new StationData(station);
 					sysData.stations[station] = stationData;
 					stationSection.dictionary.TryGetValue("economy", out stationData.economy);
 					stationSection.dictionary.TryGetValue("government", out stationData.government);
@@ -93,8 +89,7 @@ namespace EDRoutePlanner
 					{
 						CmdrsLogDataReader.Section commoditySection = commoditiesSection.subsections[commodity];
 
-						CommodityPrice cp = new CommodityPrice();
-						cp.commodity = commodity;
+						CommodityPrice cp = new CommodityPrice(commodity);
 						stationData.commodityData[commodity] = cp;
 						string status = null;
 						string modTime = null;

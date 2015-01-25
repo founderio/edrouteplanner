@@ -43,33 +43,63 @@ namespace EDRoutePlanner
 			dsStations.reloadStations(this);
 		}
 
-		public StationData GetStation(string system, string station)
+		public SystemData GetSystem(string system)
 		{
 			SystemData systemData = null;
-			StationData stationData = null;
-
 			systems.TryGetValue(system, out systemData);
-			if (systemData != null)
+			return systemData;
+		}
+
+		public StationData GetStation(string system, string station)
+		{
+			SystemData systemData = GetSystem(system);
+			if (systemData == null)
 			{
-				systemData.stations.TryGetValue(station, out stationData);
+				return null;
 			}
-			return stationData;
+			else
+			{
+				return systemData.GetStation(station);
+			}
 		}
 	}
 
 	public class SystemData
 	{
 		public string name;
-		public IDictionary<string, StationData> stations;
+		public Dictionary<string, StationData> stations;
+
+		public SystemData() : this("") { }
+
+		public SystemData(string name)
+		{
+			this.name = name;
+			this.stations = new Dictionary<string, StationData>();
+		}
+
+		public StationData GetStation(string station)
+		{
+			StationData stationData = null;
+			stations.TryGetValue(station, out stationData);
+			return stationData;
+		}
 	}
 
 	public class StationData
 	{
 		public string name;
-		public IDictionary<string, CommodityPrice> commodityData;
+		public Dictionary<string, CommodityPrice> commodityData;
 		public string economy;
 		public string government;
 		public string faction;
+
+		public StationData() : this("") { }
+
+		public StationData(string name)
+		{
+			this.name = name;
+			this.commodityData = new Dictionary<string, CommodityPrice>();
+		}
 
 		public CommodityPrice GetPrice(string commodity)
 		{
@@ -85,6 +115,13 @@ namespace EDRoutePlanner
 		public DemandType demandType;
 		public int price;
 		public int quantity;
+
+		public CommodityPrice() : this("") { }
+
+		public CommodityPrice(string commodity)
+		{
+			this.commodity = commodity;
+		}
 	}
 
 	public enum DemandType
