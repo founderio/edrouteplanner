@@ -13,8 +13,12 @@ namespace EDRoutePlanner
 	{
 		public string selectedCommodity;
 		public int selectedAmount;
+		public int maxCargo;
 
 		public Data data;
+
+		public StationData stationData;
+		public StationData nextStationData;
 
 		public CommoditySelection(Data data)
 		{
@@ -49,6 +53,7 @@ namespace EDRoutePlanner
 		private void numericUpDown1_ValueChanged(object sender, EventArgs e)
 		{
 			selectedAmount = (int)numericUpDown1.Value;
+			updateDisplay();
 		}
 
 		public void updateDisplay()
@@ -61,7 +66,54 @@ namespace EDRoutePlanner
 
 				foreach (string commodity in commodityGroup.Value)
 				{
-					listView1.Items.Add(new ListViewItem(commodity, group));
+					int profitPer = 0;
+					string price = "";
+					string demand = "";
+
+					if (stationData != null)
+					{
+						CommodityPrice ourPrice = stationData.GetPrice(commodity);
+						if (ourPrice != null)
+						{
+							price = ourPrice.price.ToString();
+							demand = ourPrice.demandType.ToString();
+						}
+						if (nextStationData != null)
+						{
+							CommodityPrice theirPrice = nextStationData.GetPrice(commodity);
+							//TODO: Check Demand types?
+							if (ourPrice != null && theirPrice != null && ourPrice.price > 0 && theirPrice.price > 0)
+							{
+								profitPer = theirPrice.price - ourPrice.price;
+							}
+						}
+					}
+					int profit = profitPer * (selectedAmount == 0 ? maxCargo : selectedAmount);
+
+					ListViewItem li = new ListViewItem(new string[] {
+						commodity,
+						demand,
+						price,
+						profitPer.ToString(),
+						profit.ToString()
+					}, group);
+					if (profit == 0)
+					{
+						li.BackColor = Color.Yellow;
+						li.ForeColor = Color.OrangeRed;
+					}
+					else if (profit < 0)
+					{
+						li.BackColor = Color.Red;
+						li.ForeColor = Color.Yellow;
+					}
+					else
+					{
+						li.BackColor = Color.Green;
+						li.ForeColor = Color.LightGreen;
+					}
+
+					listView1.Items.Add(li);
 				}
 			}
 		}
@@ -73,7 +125,7 @@ namespace EDRoutePlanner
 
 		private void submit()
 		{
-			if (btnUseSelected.Enabled)
+			if (btnUseSelected.Enabled && selectedCommodity != null)
 			{
 				this.DialogResult = DialogResult.OK;
 				this.Close();

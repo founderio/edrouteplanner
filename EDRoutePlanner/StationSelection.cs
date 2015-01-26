@@ -62,7 +62,7 @@ namespace EDRoutePlanner
 
 		private void submit()
 		{
-			if (btnUseSelected.Enabled)
+			if (btnUseSelected.Enabled && selectedStation != null && selectedSystem != null)
 			{
 				this.DialogResult = DialogResult.OK;
 				this.Close();

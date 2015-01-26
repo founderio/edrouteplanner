@@ -109,6 +109,19 @@ namespace EDRoutePlanner
 
 		private void btnAddTransaction_Click(object sender, EventArgs e)
 		{
+			Destination nextDestination = mainScreen.getNextDestination(index);
+			StationData stationData = mainScreen.data.GetStation(destination.system, destination.station);
+			StationData nextStationData = null;
+
+			if (nextDestination != null)
+			{
+				nextStationData = mainScreen.data.GetStation(nextDestination.system, nextDestination.station);
+			}
+			mainScreen.commoditySelection.stationData = stationData;
+			mainScreen.commoditySelection.nextStationData = nextStationData;
+			mainScreen.commoditySelection.maxCargo = mainScreen.maxCargo;
+			mainScreen.commoditySelection.updateDisplay();
+
 			if (mainScreen.commoditySelection.ShowDialog(mainScreen) == DialogResult.OK)
 			{
 				Transaction ta = new Transaction();

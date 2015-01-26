@@ -90,6 +90,7 @@
 			this.Controls.Add(this.btnUseSelected);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.listView1);
+			this.MinimizeBox = false;
 			this.Name = "StationSelection";
 			this.Text = "Select a Station";
 			this.ResumeLayout(false);

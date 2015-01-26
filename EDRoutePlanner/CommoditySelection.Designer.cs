@@ -89,7 +89,7 @@
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "Commodity";
-			this.columnHeader1.Width = 200;
+			this.columnHeader1.Width = 160;
 			// 
 			// numericUpDown1
 			// 
@@ -119,6 +119,7 @@
 			// 
 			this.columnHeader2.Text = "Demand";
 			this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader2.Width = 100;
 			// 
 			// columnHeader3
 			// 
@@ -145,6 +146,7 @@
 			this.Controls.Add(this.listView1);
 			this.Controls.Add(this.btnUseSelected);
 			this.Controls.Add(this.btnCancel);
+			this.MinimizeBox = false;
 			this.Name = "CommoditySelection";
 			this.Text = "Select a Commodity";
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
