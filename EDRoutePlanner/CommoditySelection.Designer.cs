@@ -34,6 +34,10 @@
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
+			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -66,7 +70,12 @@
 						| System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+			this.listView1.FullRowSelect = true;
 			this.listView1.Location = new System.Drawing.Point(12, 12);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(462, 482);
@@ -74,10 +83,12 @@
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
 			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+			this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+			this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
 			// 
 			// columnHeader1
 			// 
-			this.columnHeader1.Text = "Station Name";
+			this.columnHeader1.Text = "Commodity";
 			this.columnHeader1.Width = 200;
 			// 
 			// numericUpDown1
@@ -103,6 +114,26 @@
 			this.label1.Size = new System.Drawing.Size(89, 13);
 			this.label1.TabIndex = 7;
 			this.label1.Text = "Amount (0 = max)";
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = "Demand";
+			this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = "Price";
+			this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = "Profit per Unit";
+			this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = "Profit";
+			this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// CommoditySelection
 			// 
@@ -130,5 +161,9 @@
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.NumericUpDown numericUpDown1;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.ColumnHeader columnHeader5;
 	}
 }

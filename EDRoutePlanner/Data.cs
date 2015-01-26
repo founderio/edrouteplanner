@@ -34,10 +34,10 @@ namespace EDRoutePlanner
 			commodities = new Dictionary<string, string[]>();
 			systems = new Dictionary<string, SystemData>();
 
-			reload();
+			Reload();
 		}
 
-		public void reload()
+		public void Reload()
 		{
 			dsCommodities.reloadCommodities(this);
 			dsStations.reloadStations(this);

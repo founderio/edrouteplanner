@@ -32,47 +32,66 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-			this.label2 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
+			this.btnReloadTradeData = new System.Windows.Forms.Button();
+			this.btnPayDay = new System.Windows.Forms.Button();
 			this.btnAddDestination = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.tbProfit = new System.Windows.Forms.TextBox();
+			this.nudBalance = new System.Windows.Forms.NumericUpDown();
+			this.label2 = new System.Windows.Forms.Label();
+			this.nudMaxCargo = new System.Windows.Forms.NumericUpDown();
+			this.label1 = new System.Windows.Forms.Label();
+			this.tbRouteName = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.cbLoopRoute = new System.Windows.Forms.CheckBox();
+			this.lvRoutes = new System.Windows.Forms.ListView();
+			this.button1 = new System.Windows.Forms.Button();
+			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
 			this.splitContainer2.SuspendLayout();
 			this.panel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudBalance)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudMaxCargo)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// flowLayoutPanel1
 			// 
+			this.flowLayoutPanel1.AutoScroll = true;
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(386, 435);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(522, 433);
 			this.flowLayoutPanel1.TabIndex = 0;
+			this.flowLayoutPanel1.WrapContents = false;
 			// 
 			// splitContainer1
 			// 
+			this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.splitContainer1.Location = new System.Drawing.Point(0, 0);
 			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.lvRoutes);
 			// 
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
 			this.splitContainer1.Size = new System.Drawing.Size(929, 435);
-			this.splitContainer1.SplitterDistance = 309;
+			this.splitContainer1.SplitterDistance = 187;
 			this.splitContainer1.TabIndex = 1;
 			// 
 			// splitContainer2
 			// 
+			this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+			this.splitContainer2.IsSplitterFixed = true;
 			this.splitContainer2.Location = new System.Drawing.Point(0, 0);
 			this.splitContainer2.Name = "splitContainer2";
 			// 
@@ -83,85 +102,174 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.panel1);
-			this.splitContainer2.Size = new System.Drawing.Size(616, 435);
-			this.splitContainer2.SplitterDistance = 386;
+			this.splitContainer2.Size = new System.Drawing.Size(738, 435);
+			this.splitContainer2.SplitterDistance = 524;
 			this.splitContainer2.TabIndex = 0;
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.button1);
+			this.panel1.Controls.Add(this.cbLoopRoute);
+			this.panel1.Controls.Add(this.label4);
+			this.panel1.Controls.Add(this.tbRouteName);
+			this.panel1.Controls.Add(this.btnReloadTradeData);
+			this.panel1.Controls.Add(this.btnPayDay);
 			this.panel1.Controls.Add(this.btnAddDestination);
 			this.panel1.Controls.Add(this.label3);
-			this.panel1.Controls.Add(this.textBox1);
-			this.panel1.Controls.Add(this.numericUpDown2);
+			this.panel1.Controls.Add(this.tbProfit);
+			this.panel1.Controls.Add(this.nudBalance);
 			this.panel1.Controls.Add(this.label2);
-			this.panel1.Controls.Add(this.numericUpDown1);
+			this.panel1.Controls.Add(this.nudMaxCargo);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(226, 435);
+			this.panel1.Size = new System.Drawing.Size(208, 433);
 			this.panel1.TabIndex = 0;
 			// 
-			// label1
+			// btnReloadTradeData
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(3, 14);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(58, 13);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Max Cargo";
+			this.btnReloadTradeData.Location = new System.Drawing.Point(79, 11);
+			this.btnReloadTradeData.Name = "btnReloadTradeData";
+			this.btnReloadTradeData.Size = new System.Drawing.Size(120, 23);
+			this.btnReloadTradeData.TabIndex = 9;
+			this.btnReloadTradeData.Text = "Reload Trade Data";
+			this.btnReloadTradeData.UseVisualStyleBackColor = true;
+			this.btnReloadTradeData.Click += new System.EventHandler(this.btnReloadTradeData_Click);
 			// 
-			// numericUpDown1
+			// btnPayDay
 			// 
-			this.numericUpDown1.Location = new System.Drawing.Point(94, 12);
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-			this.numericUpDown1.TabIndex = 2;
-			// 
-			// numericUpDown2
-			// 
-			this.numericUpDown2.Location = new System.Drawing.Point(94, 38);
-			this.numericUpDown2.Name = "numericUpDown2";
-			this.numericUpDown2.Size = new System.Drawing.Size(120, 20);
-			this.numericUpDown2.TabIndex = 4;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(3, 40);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(46, 13);
-			this.label2.TabIndex = 3;
-			this.label2.Text = "Balance";
-			// 
-			// textBox1
-			// 
-			this.textBox1.Location = new System.Drawing.Point(94, 64);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 20);
-			this.textBox1.TabIndex = 5;
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(3, 67);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(31, 13);
-			this.label3.TabIndex = 6;
-			this.label3.Text = "Profit";
+			this.btnPayDay.Location = new System.Drawing.Point(124, 167);
+			this.btnPayDay.Name = "btnPayDay";
+			this.btnPayDay.Size = new System.Drawing.Size(75, 23);
+			this.btnPayDay.TabIndex = 8;
+			this.btnPayDay.Text = "Payday";
+			this.btnPayDay.UseVisualStyleBackColor = true;
+			this.btnPayDay.Click += new System.EventHandler(this.btnPayDay_Click);
 			// 
 			// btnAddDestination
 			// 
 			this.btnAddDestination.Image = global::EDRoutePlanner.Properties.Resources.flag;
 			this.btnAddDestination.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnAddDestination.Location = new System.Drawing.Point(6, 137);
+			this.btnAddDestination.Location = new System.Drawing.Point(3, 167);
 			this.btnAddDestination.Name = "btnAddDestination";
-			this.btnAddDestination.Size = new System.Drawing.Size(113, 23);
+			this.btnAddDestination.Size = new System.Drawing.Size(115, 23);
 			this.btnAddDestination.TabIndex = 7;
 			this.btnAddDestination.Text = "Add Destination";
 			this.btnAddDestination.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnAddDestination.UseVisualStyleBackColor = true;
 			this.btnAddDestination.Click += new System.EventHandler(this.btnAddDestination_Click);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(3, 144);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(31, 13);
+			this.label3.TabIndex = 6;
+			this.label3.Text = "Profit";
+			// 
+			// tbProfit
+			// 
+			this.tbProfit.Location = new System.Drawing.Point(79, 141);
+			this.tbProfit.Name = "tbProfit";
+			this.tbProfit.Size = new System.Drawing.Size(120, 20);
+			this.tbProfit.TabIndex = 5;
+			// 
+			// nudBalance
+			// 
+			this.nudBalance.Location = new System.Drawing.Point(79, 115);
+			this.nudBalance.Maximum = new decimal(new int[] {
+            -727379968,
+            232,
+            0,
+            0});
+			this.nudBalance.Name = "nudBalance";
+			this.nudBalance.Size = new System.Drawing.Size(120, 20);
+			this.nudBalance.TabIndex = 4;
+			this.nudBalance.ValueChanged += new System.EventHandler(this.nudBalance_ValueChanged);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(3, 117);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(46, 13);
+			this.label2.TabIndex = 3;
+			this.label2.Text = "Balance";
+			// 
+			// nudMaxCargo
+			// 
+			this.nudMaxCargo.Location = new System.Drawing.Point(79, 89);
+			this.nudMaxCargo.Maximum = new decimal(new int[] {
+            -727379968,
+            232,
+            0,
+            0});
+			this.nudMaxCargo.Name = "nudMaxCargo";
+			this.nudMaxCargo.Size = new System.Drawing.Size(120, 20);
+			this.nudMaxCargo.TabIndex = 2;
+			this.nudMaxCargo.ValueChanged += new System.EventHandler(this.nudMaxCargo_ValueChanged);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(3, 91);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(58, 13);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "Max Cargo";
+			// 
+			// tbRouteName
+			// 
+			this.tbRouteName.Location = new System.Drawing.Point(79, 40);
+			this.tbRouteName.Name = "tbRouteName";
+			this.tbRouteName.Size = new System.Drawing.Size(120, 20);
+			this.tbRouteName.TabIndex = 10;
+			this.tbRouteName.TextChanged += new System.EventHandler(this.tbRouteName_TextChanged);
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(3, 43);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(67, 13);
+			this.label4.TabIndex = 11;
+			this.label4.Text = "Route Name";
+			// 
+			// cbLoopRoute
+			// 
+			this.cbLoopRoute.AutoSize = true;
+			this.cbLoopRoute.Location = new System.Drawing.Point(79, 66);
+			this.cbLoopRoute.Name = "cbLoopRoute";
+			this.cbLoopRoute.Size = new System.Drawing.Size(82, 17);
+			this.cbLoopRoute.TabIndex = 12;
+			this.cbLoopRoute.Text = "Loop Route";
+			this.cbLoopRoute.UseVisualStyleBackColor = true;
+			this.cbLoopRoute.CheckedChanged += new System.EventHandler(this.cbLoopRoute_CheckedChanged);
+			// 
+			// lvRoutes
+			// 
+			this.lvRoutes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.lvRoutes.Location = new System.Drawing.Point(-1, -1);
+			this.lvRoutes.Name = "lvRoutes";
+			this.lvRoutes.Size = new System.Drawing.Size(187, 435);
+			this.lvRoutes.TabIndex = 0;
+			this.lvRoutes.UseCompatibleStateImageBehavior = false;
+			this.lvRoutes.View = System.Windows.Forms.View.List;
+			this.lvRoutes.SelectedIndexChanged += new System.EventHandler(this.lvRoutes_SelectedIndexChanged);
+			// 
+			// button1
+			// 
+			this.button1.Enabled = false;
+			this.button1.Location = new System.Drawing.Point(3, 11);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(70, 23);
+			this.button1.TabIndex = 13;
+			this.button1.Text = "New Route";
+			this.button1.UseVisualStyleBackColor = true;
 			// 
 			// MainScreen
 			// 
@@ -170,7 +278,8 @@
 			this.ClientSize = new System.Drawing.Size(929, 435);
 			this.Controls.Add(this.splitContainer1);
 			this.Name = "MainScreen";
-			this.Text = "MainScreen";
+			this.Text = "EDRoutePlanner";
+			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.ResumeLayout(false);
 			this.splitContainer2.Panel1.ResumeLayout(false);
@@ -178,8 +287,8 @@
 			this.splitContainer2.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudBalance)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudMaxCargo)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -191,11 +300,18 @@
 		private System.Windows.Forms.SplitContainer splitContainer2;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.NumericUpDown numericUpDown2;
+		private System.Windows.Forms.TextBox tbProfit;
+		private System.Windows.Forms.NumericUpDown nudBalance;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.NumericUpDown numericUpDown1;
+		private System.Windows.Forms.NumericUpDown nudMaxCargo;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button btnAddDestination;
+		private System.Windows.Forms.Button btnPayDay;
+		private System.Windows.Forms.Button btnReloadTradeData;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox tbRouteName;
+		private System.Windows.Forms.CheckBox cbLoopRoute;
+		private System.Windows.Forms.ListView lvRoutes;
+		private System.Windows.Forms.Button button1;
 	}
 }

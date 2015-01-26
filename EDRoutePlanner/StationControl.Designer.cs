@@ -73,6 +73,7 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
+			this.listView1.FullRowSelect = true;
 			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.listView1.Location = new System.Drawing.Point(44, 43);
 			this.listView1.MultiSelect = false;
@@ -85,21 +86,25 @@
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "Commodity";
-			this.columnHeader1.Width = 120;
+			this.columnHeader1.Width = 130;
 			// 
 			// columnHeader2
 			// 
 			this.columnHeader2.Text = "Amount";
+			this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader2.Width = 80;
 			// 
 			// columnHeader3
 			// 
 			this.columnHeader3.Text = "Profit per Unit";
 			this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader3.Width = 100;
 			// 
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "Profit";
 			this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader4.Width = 100;
 			// 
 			// btnInsertDestination
 			// 
@@ -114,6 +119,7 @@
 			// 
 			// btnEvaluateOptions
 			// 
+			this.btnEvaluateOptions.Enabled = false;
 			this.btnEvaluateOptions.Image = global::EDRoutePlanner.Properties.Resources.compass;
 			this.btnEvaluateOptions.Location = new System.Drawing.Point(3, 134);
 			this.btnEvaluateOptions.Name = "btnEvaluateOptions";

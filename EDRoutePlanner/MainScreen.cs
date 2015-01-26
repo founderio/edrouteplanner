@@ -18,11 +18,13 @@ namespace EDRoutePlanner
 
 		public class Route
 		{
+			public String name;
 			public List<Destination> destinations;
 			public bool loopRoute = false;
 
 			public Route()
 			{
+				this.name = "New Route";
 				destinations = new List<Destination>();
 			}
 		}
@@ -31,6 +33,7 @@ namespace EDRoutePlanner
 
 		
 		public int maxCargo = 4;
+		public int balance = 1000;
 		public int totalProfit = 0;
 
 
@@ -94,7 +97,11 @@ namespace EDRoutePlanner
 				ctrl.updateDisplay();
 				totalProfit += ctrl.overallProfit;
 			}
-			textBox1.Text = totalProfit.ToString();
+			tbProfit.Text = totalProfit.ToString();
+			nudBalance.Value = balance;
+			nudMaxCargo.Value = maxCargo;
+			tbRouteName.Text = currentRoute.name;
+			cbLoopRoute.Checked = currentRoute.loopRoute;
 			saveRouteData();
 		}
 
@@ -171,6 +178,46 @@ namespace EDRoutePlanner
 		{
 			// Insert destination at last index
 			insertDestination(currentRoute.destinations.Count - 1);
+		}
+
+		private void btnPayDay_Click(object sender, EventArgs e)
+		{
+			balance += totalProfit;
+			updateDisplay();
+		}
+
+		private void nudMaxCargo_ValueChanged(object sender, EventArgs e)
+		{
+			maxCargo = (int)nudMaxCargo.Value;
+			updateDisplay();
+		}
+
+		private void nudBalance_ValueChanged(object sender, EventArgs e)
+		{
+			balance = (int)nudBalance.Value;
+			updateDisplay();
+		}
+
+		private void btnReloadTradeData_Click(object sender, EventArgs e)
+		{
+			data.Reload();
+		}
+
+		private void tbRouteName_TextChanged(object sender, EventArgs e)
+		{
+			currentRoute.name = tbRouteName.Text;
+			updateDisplay();
+		}
+
+		private void cbLoopRoute_CheckedChanged(object sender, EventArgs e)
+		{
+			currentRoute.loopRoute = cbLoopRoute.Checked;
+			updateDisplay();
+		}
+
+		private void lvRoutes_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

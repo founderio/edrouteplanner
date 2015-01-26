@@ -65,5 +65,27 @@ namespace EDRoutePlanner
 				}
 			}
 		}
+
+		private void listView1_DoubleClick(object sender, EventArgs e)
+		{
+			submit();
+		}
+
+		private void submit()
+		{
+			if (btnUseSelected.Enabled)
+			{
+				this.DialogResult = DialogResult.OK;
+				this.Close();
+			}
+		}
+
+		private void listView1_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Return || e.KeyCode == Keys.Enter)
+			{
+				submit();
+			}
+		}
 	}
 }

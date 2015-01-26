@@ -66,16 +66,18 @@ namespace EDRoutePlanner
 				if (profit == 0)
 				{
 					li.BackColor = Color.Yellow;
+					li.ForeColor = Color.OrangeRed;
 				}
 				else if (profit < 0)
 				{
 					li.BackColor = Color.Red;
+					li.ForeColor = Color.Yellow;
 				}
 				else
 				{
 					li.BackColor = Color.Green;
+					li.ForeColor = Color.LightGreen;
 				}
-
 				listView1.Items.Add(li);
 			}
 		}

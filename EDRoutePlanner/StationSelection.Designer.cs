@@ -29,9 +29,9 @@
 		private void InitializeComponent()
 		{
 			this.listView1 = new System.Windows.Forms.ListView();
+			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.btnUseSelected = new System.Windows.Forms.Button();
-			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.SuspendLayout();
 			// 
 			// listView1
@@ -41,6 +41,7 @@
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
+			this.listView1.FullRowSelect = true;
 			this.listView1.Location = new System.Drawing.Point(12, 12);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(260, 203);
@@ -48,6 +49,13 @@
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
 			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+			this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+			this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = "Station Name";
+			this.columnHeader1.Width = 200;
 			// 
 			// btnCancel
 			// 
@@ -71,11 +79,6 @@
 			this.btnUseSelected.Text = "Use Selected Station";
 			this.btnUseSelected.UseVisualStyleBackColor = true;
 			this.btnUseSelected.Click += new System.EventHandler(this.btnUseSelected_Click);
-			// 
-			// columnHeader1
-			// 
-			this.columnHeader1.Text = "Station Name";
-			this.columnHeader1.Width = 200;
 			// 
 			// StationSelection
 			// 
