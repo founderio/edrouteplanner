@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildInfo.cs" />
     <Compile Include="CmdrsLogCommoditiesData.cs" />
     <Compile Include="CmdrsLogDataReader.cs" />
     <Compile Include="CommoditySelection.cs">

@@ -40,13 +40,14 @@
 			this.tbRouteName = new System.Windows.Forms.TextBox();
 			this.btnReloadTradeData = new System.Windows.Forms.Button();
 			this.btnPayDay = new System.Windows.Forms.Button();
-			this.btnAddDestination = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.tbProfit = new System.Windows.Forms.TextBox();
 			this.nudBalance = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
 			this.nudMaxCargo = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
+			this.lblCopyright = new System.Windows.Forms.Label();
+			this.btnAddDestination = new System.Windows.Forms.Button();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
@@ -65,7 +66,7 @@
 			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(522, 433);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(524, 500);
 			this.flowLayoutPanel1.TabIndex = 0;
 			this.flowLayoutPanel1.WrapContents = false;
 			// 
@@ -83,8 +84,8 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-			this.splitContainer1.Size = new System.Drawing.Size(929, 435);
-			this.splitContainer1.SplitterDistance = 187;
+			this.splitContainer1.Size = new System.Drawing.Size(949, 502);
+			this.splitContainer1.SplitterDistance = 191;
 			this.splitContainer1.TabIndex = 1;
 			// 
 			// lvRoutes
@@ -94,7 +95,7 @@
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.lvRoutes.Location = new System.Drawing.Point(-1, -1);
 			this.lvRoutes.Name = "lvRoutes";
-			this.lvRoutes.Size = new System.Drawing.Size(187, 435);
+			this.lvRoutes.Size = new System.Drawing.Size(191, 502);
 			this.lvRoutes.TabIndex = 0;
 			this.lvRoutes.UseCompatibleStateImageBehavior = false;
 			this.lvRoutes.View = System.Windows.Forms.View.List;
@@ -116,12 +117,13 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.panel1);
-			this.splitContainer2.Size = new System.Drawing.Size(738, 435);
-			this.splitContainer2.SplitterDistance = 524;
+			this.splitContainer2.Size = new System.Drawing.Size(754, 502);
+			this.splitContainer2.SplitterDistance = 526;
 			this.splitContainer2.TabIndex = 0;
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.lblCopyright);
 			this.panel1.Controls.Add(this.btnDefaults);
 			this.panel1.Controls.Add(this.btnNewRoute);
 			this.panel1.Controls.Add(this.cbLoopRoute);
@@ -139,12 +141,12 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(208, 433);
+			this.panel1.Size = new System.Drawing.Size(222, 500);
 			this.panel1.TabIndex = 0;
 			// 
 			// btnDefaults
 			// 
-			this.btnDefaults.Location = new System.Drawing.Point(79, 11);
+			this.btnDefaults.Location = new System.Drawing.Point(91, 11);
 			this.btnDefaults.Name = "btnDefaults";
 			this.btnDefaults.Size = new System.Drawing.Size(120, 23);
 			this.btnDefaults.TabIndex = 14;
@@ -157,7 +159,7 @@
 			this.btnNewRoute.Enabled = false;
 			this.btnNewRoute.Location = new System.Drawing.Point(3, 40);
 			this.btnNewRoute.Name = "btnNewRoute";
-			this.btnNewRoute.Size = new System.Drawing.Size(70, 23);
+			this.btnNewRoute.Size = new System.Drawing.Size(82, 23);
 			this.btnNewRoute.TabIndex = 13;
 			this.btnNewRoute.Text = "New Route";
 			this.btnNewRoute.UseVisualStyleBackColor = true;
@@ -167,7 +169,7 @@
 			// 
 			this.cbLoopRoute.AutoSize = true;
 			this.cbLoopRoute.Enabled = false;
-			this.cbLoopRoute.Location = new System.Drawing.Point(79, 95);
+			this.cbLoopRoute.Location = new System.Drawing.Point(91, 95);
 			this.cbLoopRoute.Name = "cbLoopRoute";
 			this.cbLoopRoute.Size = new System.Drawing.Size(82, 17);
 			this.cbLoopRoute.TabIndex = 12;
@@ -186,7 +188,7 @@
 			// 
 			// tbRouteName
 			// 
-			this.tbRouteName.Location = new System.Drawing.Point(79, 69);
+			this.tbRouteName.Location = new System.Drawing.Point(91, 69);
 			this.tbRouteName.Name = "tbRouteName";
 			this.tbRouteName.Size = new System.Drawing.Size(120, 20);
 			this.tbRouteName.TabIndex = 10;
@@ -194,7 +196,7 @@
 			// 
 			// btnReloadTradeData
 			// 
-			this.btnReloadTradeData.Location = new System.Drawing.Point(79, 40);
+			this.btnReloadTradeData.Location = new System.Drawing.Point(91, 40);
 			this.btnReloadTradeData.Name = "btnReloadTradeData";
 			this.btnReloadTradeData.Size = new System.Drawing.Size(120, 23);
 			this.btnReloadTradeData.TabIndex = 9;
@@ -206,24 +208,11 @@
 			// 
 			this.btnPayDay.Location = new System.Drawing.Point(6, 173);
 			this.btnPayDay.Name = "btnPayDay";
-			this.btnPayDay.Size = new System.Drawing.Size(67, 23);
+			this.btnPayDay.Size = new System.Drawing.Size(79, 23);
 			this.btnPayDay.TabIndex = 8;
 			this.btnPayDay.Text = "Payday";
 			this.btnPayDay.UseVisualStyleBackColor = true;
 			this.btnPayDay.Click += new System.EventHandler(this.btnPayDay_Click);
-			// 
-			// btnAddDestination
-			// 
-			this.btnAddDestination.Image = global::EDRoutePlanner.Properties.Resources.flag;
-			this.btnAddDestination.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnAddDestination.Location = new System.Drawing.Point(79, 118);
-			this.btnAddDestination.Name = "btnAddDestination";
-			this.btnAddDestination.Size = new System.Drawing.Size(120, 23);
-			this.btnAddDestination.TabIndex = 7;
-			this.btnAddDestination.Text = "Add Destination";
-			this.btnAddDestination.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnAddDestination.UseVisualStyleBackColor = true;
-			this.btnAddDestination.Click += new System.EventHandler(this.btnAddDestination_Click);
 			// 
 			// label3
 			// 
@@ -236,14 +225,14 @@
 			// 
 			// tbProfit
 			// 
-			this.tbProfit.Location = new System.Drawing.Point(79, 147);
+			this.tbProfit.Location = new System.Drawing.Point(91, 147);
 			this.tbProfit.Name = "tbProfit";
 			this.tbProfit.Size = new System.Drawing.Size(120, 20);
 			this.tbProfit.TabIndex = 5;
 			// 
 			// nudBalance
 			// 
-			this.nudBalance.Location = new System.Drawing.Point(79, 228);
+			this.nudBalance.Location = new System.Drawing.Point(91, 228);
 			this.nudBalance.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -265,7 +254,7 @@
 			// 
 			// nudMaxCargo
 			// 
-			this.nudMaxCargo.Location = new System.Drawing.Point(79, 202);
+			this.nudMaxCargo.Location = new System.Drawing.Point(91, 202);
 			this.nudMaxCargo.Maximum = new decimal(new int[] {
             -727379968,
             232,
@@ -285,14 +274,41 @@
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Max Cargo";
 			// 
+			// lblCopyright
+			// 
+			this.lblCopyright.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.lblCopyright.AutoSize = true;
+			this.lblCopyright.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblCopyright.ForeColor = System.Drawing.SystemColors.GrayText;
+			this.lblCopyright.Location = new System.Drawing.Point(3, 480);
+			this.lblCopyright.Name = "lblCopyright";
+			this.lblCopyright.Size = new System.Drawing.Size(63, 12);
+			this.lblCopyright.TabIndex = 15;
+			this.lblCopyright.Text = "Copyright Info";
+			// 
+			// btnAddDestination
+			// 
+			this.btnAddDestination.Image = global::EDRoutePlanner.Properties.Resources.flag;
+			this.btnAddDestination.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnAddDestination.Location = new System.Drawing.Point(91, 118);
+			this.btnAddDestination.Name = "btnAddDestination";
+			this.btnAddDestination.Size = new System.Drawing.Size(120, 23);
+			this.btnAddDestination.TabIndex = 7;
+			this.btnAddDestination.Text = "Add Destination";
+			this.btnAddDestination.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnAddDestination.UseVisualStyleBackColor = true;
+			this.btnAddDestination.Click += new System.EventHandler(this.btnAddDestination_Click);
+			// 
 			// MainScreen
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(929, 435);
+			this.ClientSize = new System.Drawing.Size(949, 502);
 			this.Controls.Add(this.splitContainer1);
+			this.MinimumSize = new System.Drawing.Size(965, 320);
 			this.Name = "MainScreen";
 			this.Text = "EDRoutePlanner";
+			this.Load += new System.EventHandler(this.MainScreen_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.ResumeLayout(false);
@@ -328,5 +344,6 @@
 		private System.Windows.Forms.ListView lvRoutes;
 		private System.Windows.Forms.Button btnNewRoute;
 		private System.Windows.Forms.Button btnDefaults;
+		private System.Windows.Forms.Label lblCopyright;
 	}
 }

@@ -309,6 +309,11 @@ namespace EDRoutePlanner
 
 		#endregion Data Fields
 
+		private void MainScreen_Load(object sender, EventArgs e)
+		{
+			lblCopyright.Text = String.Format("{0} {1} - {2}", BuildInfo.AssemblyTitle, BuildInfo.AssemblyVersion, BuildInfo.AssemblyCopyright);
+		}
+
 
 	}
 }
