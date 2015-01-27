@@ -14,11 +14,11 @@ namespace EDRoutePlanner
 		public string selectedSystem;
 		public string selectedStation;
 
-		public Data data;
+		public MainScreen mainScreen;
 
-		public StationSelection(Data data)
+		public StationSelection(MainScreen mainScreen)
 		{
-			this.data = data;
+			this.mainScreen = mainScreen;
 			InitializeComponent();
 			updateDisplay();
 		}
@@ -27,7 +27,7 @@ namespace EDRoutePlanner
 		{
 			listView1.Items.Clear();
 			listView1.Groups.Clear();
-			foreach(SystemData system in data.systems.Values) {
+			foreach(SystemData system in mainScreen.data.systems.Values) {
 				ListViewGroup group = listView1.Groups.Add(system.name, system.name);
 				
 				foreach (StationData station in system.stations.Values)

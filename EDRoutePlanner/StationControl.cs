@@ -119,7 +119,7 @@ namespace EDRoutePlanner
 			}
 			mainScreen.commoditySelection.stationData = stationData;
 			mainScreen.commoditySelection.nextStationData = nextStationData;
-			mainScreen.commoditySelection.maxCargo = mainScreen.maxCargo;
+			mainScreen.commoditySelection.maxCargo = mainScreen.pilotData.maxCargo;
 			mainScreen.commoditySelection.updateDisplay();
 
 			if (mainScreen.commoditySelection.ShowDialog(mainScreen) == DialogResult.OK)
@@ -128,7 +128,7 @@ namespace EDRoutePlanner
 				ta.amount = mainScreen.commoditySelection.selectedAmount;
 				if (ta.amount == 0)
 				{
-					ta.amount = mainScreen.maxCargo;
+					ta.amount = mainScreen.pilotData.maxCargo;
 				}
 				ta.commodity = mainScreen.commoditySelection.selectedCommodity;
 				destination.transactions.Add(ta);

@@ -15,14 +15,14 @@ namespace EDRoutePlanner
 		public int selectedAmount;
 		public int maxCargo;
 
-		public Data data;
+		public MainScreen mainScreen;
 
 		public StationData stationData;
 		public StationData nextStationData;
 
-		public CommoditySelection(Data data)
+		public CommoditySelection(MainScreen mainScreen)
 		{
-			this.data = data;
+			this.mainScreen = mainScreen;
 			InitializeComponent();
 			updateDisplay();
 		}
@@ -60,7 +60,7 @@ namespace EDRoutePlanner
 		{
 			listView1.Items.Clear();
 			listView1.Groups.Clear();
-			foreach (KeyValuePair<string, string[]> commodityGroup in data.commodities)
+			foreach (KeyValuePair<string, string[]> commodityGroup in mainScreen.data.commodities)
 			{
 				ListViewGroup group = listView1.Groups.Add(commodityGroup.Key, commodityGroup.Key);
 

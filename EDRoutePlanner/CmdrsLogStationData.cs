@@ -6,14 +6,13 @@ using System.IO;
 
 namespace EDRoutePlanner
 {
-	public class CmdrsLogData : IDataSourceStations, IDataSourceCommodities
+	public class CmdrsLogStationData : IDataSourceStations
 	{
-		private CmdrsLogDataReader readerCommodityData;
 		private CmdrsLogDataReader readerSystemData;
 
 		static DemandType[] statiV1;
 
-		static CmdrsLogData() {
+		static CmdrsLogStationData() {
 			statiV1 = new DemandType[9];
 			statiV1[8] = DemandType.NotSet;
 			statiV1[7] = DemandType.Illegal;
@@ -37,13 +36,9 @@ namespace EDRoutePlanner
 			}
 		}
 
-		public CmdrsLogData(string basePath)
+		public CmdrsLogStationData(string basePath)
 		{
-			string pathSystemData = Path.Combine(basePath, "system_data.txt");
-			string pathCommodityData = Path.Combine(basePath, "default_commodity_data.txt");
-
-			readerCommodityData = new CmdrsLogDataReader(pathCommodityData);
-			readerSystemData = new CmdrsLogDataReader(pathSystemData);
+			readerSystemData = new CmdrsLogDataReader(basePath);
 		}
 
 		public void reloadStations(Data data)
@@ -111,21 +106,6 @@ namespace EDRoutePlanner
 					}
 				}
 			}
-		}
-
-		public void reloadCommodities(Data data)
-		{
-			List<string> allCommodities = new List<string>();
-
-			foreach (string commodityGroup in readerCommodityData.rootSection.subsections.Keys)
-			{
-				CmdrsLogDataReader.Section groupSection = readerCommodityData.rootSection.subsections[commodityGroup];
-
-				allCommodities.AddRange(groupSection.textContent);
-				data.commodities[commodityGroup] = groupSection.textContent.ToArray();
-			}
-
-			data.allCommodities = allCommodities.ToArray();
 		}
 
 	}

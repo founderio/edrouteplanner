@@ -20,13 +20,19 @@ namespace EDRoutePlanner
 
 		public void Open()
 		{
-			reader = new StreamReader(path);
+			if (path != null && File.Exists(path))
+			{
+				reader = new StreamReader(path);
+			}
 		}
 
 		public void Close()
 		{
-			reader.Close();
-			reader = null;
+			if (reader != null)
+			{
+				reader.Close();
+				reader = null;
+			}
 		}
 
 		public bool IsOpen
@@ -36,12 +42,18 @@ namespace EDRoutePlanner
 
 		public void ReadHeaders()
 		{
-			//TODO: parse when required.
-			reader.ReadLine();
+			if (reader != null) {
+				//TODO: parse when required.
+				reader.ReadLine();
+			}
 		}
 
 		public string[] ReadLine()
 		{
+			if (reader == null)
+			{
+				return null;
+			}
 			string line = reader.ReadLine();
 			if (line == null || line.Trim().Length == 0)
 			{

@@ -13,6 +13,11 @@ namespace EDRoutePlanner
 {
 	public partial class MainScreen : Form
 	{
+		private const string FILENAME_PILOT_DATA = "pilot.xml";
+		private const string FILENAME_ROUTES = "routes.xml";
+		private const string FILENAME_DEFAULTS = "defaults.xml";
+
+
 		private List<Route> routes;
 		private Route currentRoute;
 
@@ -31,28 +36,50 @@ namespace EDRoutePlanner
 
 		private List<StationControl> stationControls;
 
-		
-		public int maxCargo = 4;
-		public int balance = 1000;
 		public int totalProfit = 0;
 
+		public Defaults defaults;
+		public PilotData pilotData;
 
 		public Data data;
 
 		public StationSelection stationSelection;
 		public CommoditySelection commoditySelection;
+		public DefaultsForm defaultsForm;
 
 		public MainScreen()
 		{
+			loadDefaults();
+			loadPilotData();
 			stationControls = new List<StationControl>();
-			CmdrsLogData cmdrsLogData = new CmdrsLogData("C:\\Users\\Oliver\\Downloads\\Cmdr's Log v1.6b\\Cmdr's Log v1.6b");
-			RegulatedNoiseData regulatedNoiseData = new RegulatedNoiseData("C:\\Users\\Oliver\\Downloads\\RegulatedNoise.v1.83\\AutoSave.csv");
-			data = new Data(regulatedNoiseData, cmdrsLogData);
 			InitializeComponent();
-			stationSelection = new StationSelection(data);
-			commoditySelection = new CommoditySelection(data);
+			forceReloadData();
+			stationSelection = new StationSelection(this);
+			commoditySelection = new CommoditySelection(this);
+			defaultsForm = new DefaultsForm(this);
 			loadRouteData();
 			updateDisplay();
+		}
+
+		public void forceReloadData()
+		{
+			IDataSourceCommodities dsCommodities;
+			IDataSourceStations dsStations;
+			CmdrsLogCommoditiesData cmdrsLogData = new CmdrsLogCommoditiesData(defaults.pathCommodityData);
+			dsCommodities = cmdrsLogData;
+
+			switch (defaults.typeStationData)
+			{
+				default:
+				case DataSourceType.RegulatedNoise:
+					dsStations = new RegulatedNoiseData(defaults.pathStationData);
+					break;
+				case DataSourceType.CmdrsLogV1:
+					dsStations = new CmdrsLogStationData(defaults.pathStationData);
+					break;
+
+			}
+			data = new Data(dsStations, dsCommodities);
 		}
 
 		public void updateDisplay()
@@ -98,35 +125,72 @@ namespace EDRoutePlanner
 				totalProfit += ctrl.overallProfit;
 			}
 			tbProfit.Text = totalProfit.ToString();
-			nudBalance.Value = balance;
-			nudMaxCargo.Value = maxCargo;
+			nudBalance.Value = pilotData.balance;
+			nudMaxCargo.Value = pilotData.maxCargo;
 			tbRouteName.Text = currentRoute.name;
 			cbLoopRoute.Checked = currentRoute.loopRoute;
 			saveRouteData();
+			savePilotData();
 		}
+
+		#region Persistence
+
+		public T loadFile<T>(string filename) where T : new() {
+			T fileData = default(T);
+			if(File.Exists(filename)) {
+				XmlSerializer ser = new XmlSerializer(typeof(T));
+				TextReader reader = new StreamReader(filename);
+				fileData = (T)ser.Deserialize(reader);
+				reader.Close();
+			}
+			if(fileData == null) {
+				fileData = new T();
+			}
+			return fileData;
+		}
+
+		public void saveFile<T>(string filename, T fileData)
+		{
+			XmlSerializer ser = new XmlSerializer(typeof(T));
+			TextWriter writer = new StreamWriter(filename);
+			ser.Serialize(writer, fileData);
+			writer.Close();
+		}
+
 
 		public void saveRouteData()
 		{
-			XmlSerializer ser = new XmlSerializer(typeof(List<Route>));
-			TextWriter writer = new StreamWriter("routes.xml");
-			ser.Serialize(writer, routes);
-			writer.Close();
+			saveFile(FILENAME_ROUTES, routes);
+		}
+
+		public void savePilotData()
+		{
+			saveFile(FILENAME_PILOT_DATA, pilotData);
+		}
+
+		public void saveDefaults()
+		{
+			saveFile(FILENAME_DEFAULTS, defaults);
 		}
 
 		public void loadRouteData()
 		{
-			if (File.Exists("routes.xml"))
-			{
-				XmlSerializer ser = new XmlSerializer(typeof(List<Route>));
-				TextReader reader = new StreamReader("routes.xml");
-				routes = (List<Route>)ser.Deserialize(reader);
-				reader.Close();
-			}
-			if (routes == null)
-			{
-				routes = new List<Route>();
-			}
+			routes = loadFile<List<Route>>(FILENAME_ROUTES);
 		}
+
+		public void loadPilotData()
+		{
+			pilotData = loadFile<PilotData>(FILENAME_PILOT_DATA);
+		}
+
+		public void loadDefaults()
+		{
+			defaults = loadFile<Defaults>(FILENAME_DEFAULTS);
+		}
+
+		#endregion Persistence
+
+		#region StationControl callbacks
 
 		public void deleteDestination(int index)
 		{
@@ -141,8 +205,8 @@ namespace EDRoutePlanner
 				Destination dest = currentRoute.destinations[index];
 				dest.system = stationSelection.selectedSystem;
 				dest.station = stationSelection.selectedStation;
+				updateDisplay();
 			}
-			updateDisplay();
 		}
 
 		public void insertDestination(int index)
@@ -164,14 +228,38 @@ namespace EDRoutePlanner
 
 		public Destination getNextDestination(int index)
 		{
-			if (index < currentRoute.destinations.Count - 1 || (currentRoute.loopRoute && index == currentRoute.destinations.Count - 1))
+			if (index < currentRoute.destinations.Count - 1)
 			{
 				return currentRoute.destinations[index + 1];
+			}
+			else if (currentRoute.loopRoute && index == currentRoute.destinations.Count - 1)
+			{
+				return currentRoute.destinations[0];
 			}
 			else
 			{
 				return null;
 			}
+		}
+
+		#endregion StationControl callbacks
+
+		#region Buttons
+		
+		private void btnDefaults_Click(object sender, EventArgs e)
+		{
+			defaultsForm.UpdateDisplay();
+			defaultsForm.ShowDialog(this);
+		}
+
+		private void btnNewRoute_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void btnReloadTradeData_Click(object sender, EventArgs e)
+		{
+			data.Reload();
 		}
 
 		private void btnAddDestination_Click(object sender, EventArgs e)
@@ -182,25 +270,29 @@ namespace EDRoutePlanner
 
 		private void btnPayDay_Click(object sender, EventArgs e)
 		{
-			balance += totalProfit;
+			pilotData.balance += totalProfit;
 			updateDisplay();
 		}
 
+		#endregion Buttons
+
+		private void lvRoutes_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		#region Data Fields
+
 		private void nudMaxCargo_ValueChanged(object sender, EventArgs e)
 		{
-			maxCargo = (int)nudMaxCargo.Value;
+			pilotData.maxCargo = (int)nudMaxCargo.Value;
 			updateDisplay();
 		}
 
 		private void nudBalance_ValueChanged(object sender, EventArgs e)
 		{
-			balance = (int)nudBalance.Value;
+			pilotData.balance = (int)nudBalance.Value;
 			updateDisplay();
-		}
-
-		private void btnReloadTradeData_Click(object sender, EventArgs e)
-		{
-			data.Reload();
 		}
 
 		private void tbRouteName_TextChanged(object sender, EventArgs e)
@@ -215,9 +307,8 @@ namespace EDRoutePlanner
 			updateDisplay();
 		}
 
-		private void lvRoutes_SelectedIndexChanged(object sender, EventArgs e)
-		{
+		#endregion Data Fields
 
-		}
+
 	}
 }

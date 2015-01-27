@@ -39,6 +39,10 @@ namespace EDRoutePlanner
 		public void reload()
 		{
 			rootSection = null;
+			if (path == null || !File.Exists(path))
+			{
+				return;
+			}
 			string[] lines = File.ReadAllLines(path, Encoding.UTF8);
 
 			Stack<Section> sections = new Stack<Section>();

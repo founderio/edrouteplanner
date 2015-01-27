@@ -32,12 +32,12 @@
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-			this.label1 = new System.Windows.Forms.Label();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.label1 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -76,6 +76,7 @@
             this.columnHeader4,
             this.columnHeader5});
 			this.listView1.FullRowSelect = true;
+			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.listView1.Location = new System.Drawing.Point(12, 12);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(462, 482);
@@ -90,6 +91,27 @@
 			// 
 			this.columnHeader1.Text = "Commodity";
 			this.columnHeader1.Width = 160;
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = "Demand";
+			this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.columnHeader2.Width = 100;
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = "Price";
+			this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = "Profit per Unit";
+			this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = "Profit";
+			this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// numericUpDown1
 			// 
@@ -114,27 +136,6 @@
 			this.label1.Size = new System.Drawing.Size(89, 13);
 			this.label1.TabIndex = 7;
 			this.label1.Text = "Amount (0 = max)";
-			// 
-			// columnHeader2
-			// 
-			this.columnHeader2.Text = "Demand";
-			this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader2.Width = 100;
-			// 
-			// columnHeader3
-			// 
-			this.columnHeader3.Text = "Price";
-			this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// columnHeader4
-			// 
-			this.columnHeader4.Text = "Profit per Unit";
-			this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// columnHeader5
-			// 
-			this.columnHeader5.Text = "Profit";
-			this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// CommoditySelection
 			// 

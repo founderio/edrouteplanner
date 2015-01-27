@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CmdrsLogData.cs" />
+    <Compile Include="CmdrsLogCommoditiesData.cs" />
     <Compile Include="CmdrsLogDataReader.cs" />
     <Compile Include="CommoditySelection.cs">
       <SubType>Form</SubType>
@@ -58,17 +58,30 @@
     </Compile>
     <Compile Include="CsvReader.cs" />
     <Compile Include="Data.cs" />
+    <Compile Include="Defaults.cs" />
+    <Compile Include="DefaultsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DefaultsForm.Designer.cs">
+      <DependentUpon>DefaultsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Destination.cs" />
+    <Compile Include="CmdrsLogStationData.cs" />
     <Compile Include="MainScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="PilotData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CommoditySelection.resx">
       <DependentUpon>CommoditySelection.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultsForm.resx">
+      <DependentUpon>DefaultsForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainScreen.resx">
