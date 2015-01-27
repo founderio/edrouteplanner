@@ -1,9 +1,35 @@
 # EDRoutePlanner
 Elite Dangerous Route Planner
 
+## Running
+Requirements:
+* .NET Framework 3.5+ or Mono
+* Commodities Data from (currently) Cmdr's Log, either version will suffice
+* (optional, but recommended for profit calculation) Station Trade data from Cmdr's Log 1.x or RegulatedNoise
 
---
-# License
+Tested with version 1.6b (2.1b) of Cmdr's Log and version 1.83 of RegulatedNoise. Other versions might break compatibility.
+
+Running:
+After launching the application, go to the defaults on the top right of the main screen and set your data paths.
+The files you should be looking for are:
+* For Cmdr's Log (1.x + 2.x) commodities data: "default_commodity_data.txt"
+* For Cmdr's Log (1.x) station data: "system_data.txt"
+* For RegulatedNoise station data: "AutoSave.csv"
+
+## Known issues
+Currently no *real* issues, although I am pretty sure that the commodity names do not match between Cmdr's Log 1.x and RegulatedNoise. Please report any issues you have with that!
+
+## Contributing
+Contributions are welcome at any point!
+
+Software/Languages used:
+* Visual Studio 2008 Standard
+* C# on .NET 3.5 Client Profile
+The project should be compatible with the Express versions for C# and of course newer versions of Visual Studio.
+If you work with a newer version please take care not to commit incompatible stuff when creating a pull request...
+
+
+## License
 Copyright 2015 Oliver Kahrmann
 
 Licensed under the Apache License, Version 2.0 (the "License");
