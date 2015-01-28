@@ -19,9 +19,9 @@ The files you should be looking for are:
 ## Known issues
 * I am pretty sure that the commodity names do not match between Cmdr's Log 1.x and RegulatedNoise. Please report any issues you have with that!
 * Due to the way RegulatedNoise saves its data (manually or on quit) the autoloading feature does not really do anything, as the data file never changes unless closing & restarting RegulatedNoise.
-   * Workaround:
-   * You can manually save your data file using the button "Save Unified CSV" whenever you change anything.
-   * Save it to the same file every time and select that file in EDRoutePlanner as source for the station data. (You can also save to the AutoSave.csv - that way you will also get the most recent data when you close RegulatedNoise)
+  * Workaround:
+  * You can manually save your data file using the button "Save Unified CSV" whenever you change anything.
+  * Save it to the same file every time and select that file in EDRoutePlanner as source for the station data. (You can also save to the AutoSave.csv - that way you will also get the most recent data when you close RegulatedNoise)
 
 ## Contributing
 Contributions are welcome at any point!
