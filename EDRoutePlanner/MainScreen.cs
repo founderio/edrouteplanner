@@ -155,7 +155,7 @@ namespace EDRoutePlanner
 				ctrl.updateDisplay();
 				totalProfit += ctrl.overallProfit;
 			}
-			tbProfit.Text = totalProfit.ToString();
+			tbProfit.Text = totalProfit.ToString("N0");
 			nudBalance.Value = pilotData.balance;
 			nudMaxCargo.Value = pilotData.maxCargo;
 			tbRouteName.Text = currentRoute.name;

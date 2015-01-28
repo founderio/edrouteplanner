@@ -59,7 +59,7 @@ namespace EDRoutePlanner
 			// btnUseSelected
 			// 
 			this.btnUseSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnUseSelected.Location = new System.Drawing.Point(255, 500);
+			this.btnUseSelected.Location = new System.Drawing.Point(319, 500);
 			this.btnUseSelected.Name = "btnUseSelected";
 			this.btnUseSelected.Size = new System.Drawing.Size(138, 23);
 			this.btnUseSelected.TabIndex = 1;
@@ -71,7 +71,7 @@ namespace EDRoutePlanner
 			// 
 			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(399, 500);
+			this.btnCancel.Location = new System.Drawing.Point(463, 500);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 0;
@@ -95,7 +95,7 @@ namespace EDRoutePlanner
 			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.listView1.Location = new System.Drawing.Point(12, 12);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(462, 482);
+			this.listView1.Size = new System.Drawing.Size(526, 482);
 			this.listView1.TabIndex = 2;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
@@ -132,7 +132,7 @@ namespace EDRoutePlanner
 			// numericUpDown1
 			// 
 			this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.numericUpDown1.Location = new System.Drawing.Point(173, 503);
+			this.numericUpDown1.Location = new System.Drawing.Point(237, 503);
 			this.numericUpDown1.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -147,7 +147,7 @@ namespace EDRoutePlanner
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(78, 505);
+			this.label1.Location = new System.Drawing.Point(142, 505);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(89, 13);
 			this.label1.TabIndex = 4;
@@ -162,7 +162,7 @@ namespace EDRoutePlanner
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(486, 535);
+			this.ClientSize = new System.Drawing.Size(550, 535);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.numericUpDown1);
 			this.Controls.Add(this.listView1);

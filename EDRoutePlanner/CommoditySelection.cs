@@ -54,6 +54,8 @@ namespace EDRoutePlanner
 					string priceBuy = "";
 					string priceSell = "";
 					string demand = "";
+					string profitPerStr = "";
+					string profitStr = "";
 
 					if (stationData != null)
 					{
@@ -81,18 +83,24 @@ namespace EDRoutePlanner
 					}
 					int profit = profitPer * (selectedAmount == 0 ? maxCargo : selectedAmount);
 
+					if (profitPer != 0)
+					{
+						profitPerStr = profitPer.ToString("N0");
+						profitStr = profit.ToString("N0");
+					}
+
 					ListViewItem li = new ListViewItem(new string[] {
 						commodity,
 						demand,
 						priceSell,
 						priceBuy,
-						profitPer.ToString("N0"),
-						profit.ToString("N0")
+						profitPerStr,
+						profitStr
 					}, group);
 					if (profit == 0)
 					{
-						li.BackColor = Color.Yellow;
-						li.ForeColor = Color.OrangeRed;
+						//li.BackColor = Color.Yellow;
+						//li.ForeColor = Color.OrangeRed;
 					}
 					else if (profit < 0)
 					{

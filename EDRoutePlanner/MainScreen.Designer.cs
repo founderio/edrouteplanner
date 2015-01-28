@@ -268,10 +268,13 @@ namespace EDRoutePlanner
 			// 
 			// tbProfit
 			// 
+			this.tbProfit.BackColor = System.Drawing.SystemColors.Window;
 			this.tbProfit.Location = new System.Drawing.Point(91, 147);
 			this.tbProfit.Name = "tbProfit";
+			this.tbProfit.ReadOnly = true;
 			this.tbProfit.Size = new System.Drawing.Size(120, 20);
 			this.tbProfit.TabIndex = 6;
+			this.tbProfit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// nudBalance
 			// 
@@ -284,6 +287,8 @@ namespace EDRoutePlanner
 			this.nudBalance.Name = "nudBalance";
 			this.nudBalance.Size = new System.Drawing.Size(120, 20);
 			this.nudBalance.TabIndex = 9;
+			this.nudBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.nudBalance.ThousandsSeparator = true;
 			this.nudBalance.ValueChanged += new System.EventHandler(this.nudBalance_ValueChanged);
 			// 
 			// label2
@@ -306,6 +311,8 @@ namespace EDRoutePlanner
 			this.nudMaxCargo.Name = "nudMaxCargo";
 			this.nudMaxCargo.Size = new System.Drawing.Size(120, 20);
 			this.nudMaxCargo.TabIndex = 8;
+			this.nudMaxCargo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.nudMaxCargo.ThousandsSeparator = true;
 			this.nudMaxCargo.ValueChanged += new System.EventHandler(this.nudMaxCargo_ValueChanged);
 			// 
 			// label1
