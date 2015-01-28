@@ -61,10 +61,9 @@ namespace EDRoutePlanner
 				{
 					CommodityPrice ourPrice = stationData.GetPrice(transaction.commodity);
 					CommodityPrice theirPrice = nextStationData.GetPrice(transaction.commodity);
-					//TODO: Check Demand types?
-					if (ourPrice != null && theirPrice != null && ourPrice.price > 0 && theirPrice.price > 0)
+					if (ourPrice != null && theirPrice != null && theirPrice.priceSell > 0 && ourPrice.priceBuy > 0)
 					{
-						profitPer = theirPrice.price - ourPrice.price;
+						profitPer = theirPrice.priceSell - ourPrice.priceBuy;
 					}
 				}
 
@@ -72,9 +71,9 @@ namespace EDRoutePlanner
 				overallProfit += profit;
 				ListViewItem li = new ListViewItem(new string[] {
 					transaction.commodity,
-					transaction.amount.ToString(),
-					profitPer.ToString(),
-					profit.ToString()
+					transaction.amount.ToString("N0"),
+					profitPer.ToString("N0"),
+					profit.ToString("N0")
 				});
 
 				if (profit == 0)

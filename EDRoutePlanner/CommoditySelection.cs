@@ -51,7 +51,8 @@ namespace EDRoutePlanner
 				foreach (string commodity in commodityGroup.Value)
 				{
 					int profitPer = 0;
-					string price = "";
+					string priceBuy = "";
+					string priceSell = "";
 					string demand = "";
 
 					if (stationData != null)
@@ -59,16 +60,22 @@ namespace EDRoutePlanner
 						CommodityPrice ourPrice = stationData.GetPrice(commodity);
 						if (ourPrice != null)
 						{
-							price = ourPrice.price.ToString();
+							if (ourPrice.priceBuy > 0)
+							{
+								priceBuy = ourPrice.priceBuy.ToString("N0");
+							}
+							if (ourPrice.priceSell > 0)
+							{
+								priceSell = ourPrice.priceSell.ToString("N0");
+							}
 							demand = ourPrice.demandType.ToString();
 						}
 						if (nextStationData != null)
 						{
 							CommodityPrice theirPrice = nextStationData.GetPrice(commodity);
-							//TODO: Check Demand types?
-							if (ourPrice != null && theirPrice != null && ourPrice.price > 0 && theirPrice.price > 0)
+							if (ourPrice != null && theirPrice != null && theirPrice.priceSell > 0 && ourPrice.priceBuy > 0)
 							{
-								profitPer = theirPrice.price - ourPrice.price;
+								profitPer = theirPrice.priceSell - ourPrice.priceBuy;
 							}
 						}
 					}
@@ -77,9 +84,10 @@ namespace EDRoutePlanner
 					ListViewItem li = new ListViewItem(new string[] {
 						commodity,
 						demand,
-						price,
-						profitPer.ToString(),
-						profit.ToString()
+						priceSell,
+						priceBuy,
+						profitPer.ToString("N0"),
+						profit.ToString("N0")
 					}, group);
 					if (profit == 0)
 					{

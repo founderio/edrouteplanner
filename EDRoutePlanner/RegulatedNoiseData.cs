@@ -72,41 +72,37 @@ namespace EDRoutePlanner
 					cp = new CommodityPrice(commodity);
 					stationData.commodityData[commodity] = cp;
 				}
+				int.TryParse(buyPrice, out cp.priceBuy);
+				int.TryParse(sellPrice, out cp.priceSell);
 
 				if (demandLevel == "Low")
 				{
 					cp.demandType = DemandType.LowDemand;
-					int.TryParse(sellPrice, out cp.price);
 					int.TryParse(demandAmount, out cp.quantity);
 				}
 				else if (demandLevel == "Med")
 				{
 					cp.demandType = DemandType.MediumDemand;
-					int.TryParse(sellPrice, out cp.price);
 					int.TryParse(demandAmount, out cp.quantity);
 				}
 				else if (demandLevel == "High")
 				{
 					cp.demandType = DemandType.HighDemand;
-					int.TryParse(sellPrice, out cp.price);
 					int.TryParse(demandAmount, out cp.quantity);
 				}
 				else if (supplyLevel == "Low")
 				{
 					cp.demandType = DemandType.LowSupply;
-					int.TryParse(buyPrice, out cp.price);
 					int.TryParse(supplyAmount, out cp.quantity);
 				}
 				else if (supplyLevel == "Med")
 				{
 					cp.demandType = DemandType.MediumSupply;
-					int.TryParse(buyPrice, out cp.price);
 					int.TryParse(supplyAmount, out cp.quantity);
 				}
 				else if (supplyLevel == "High")
 				{
 					cp.demandType = DemandType.HighSupply;
-					int.TryParse(buyPrice, out cp.price);
 					int.TryParse(supplyAmount, out cp.quantity);
 				}
 				else

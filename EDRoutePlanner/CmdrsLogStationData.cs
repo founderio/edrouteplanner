@@ -110,13 +110,28 @@ namespace EDRoutePlanner
 						commoditySection.dictionary.TryGetValue("quantity", out quantity);
 
 						int statusAsInt = 8;
+						int priceAsInt = 0;
 
 						//TODO: respect modTime?
-						int.TryParse(price, out cp.price);
+						int.TryParse(price, out priceAsInt);
 						int.TryParse(quantity, out cp.quantity);
 						int.TryParse(status, out statusAsInt);
 
 						cp.demandType = parseStatusCmdrsLogV1(statusAsInt);
+
+						switch (cp.demandType)
+						{
+							case DemandType.HighDemand:
+							case DemandType.MediumDemand:
+							case DemandType.LowDemand:
+								cp.priceBuy = priceAsInt;
+								break;
+							case DemandType.HighSupply:
+							case DemandType.MediumSupply:
+							case DemandType.LowSupply:
+								cp.priceSell = priceAsInt;
+								break;
+						}
 					}
 				}
 			}

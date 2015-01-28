@@ -52,6 +52,7 @@ namespace EDRoutePlanner
 			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
+			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -86,6 +87,7 @@ namespace EDRoutePlanner
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
+            this.columnHeader6,
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5});
@@ -114,7 +116,7 @@ namespace EDRoutePlanner
 			// 
 			// columnHeader3
 			// 
-			this.columnHeader3.Text = "Price";
+			this.columnHeader3.Text = "Price Buy";
 			this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// columnHeader4
@@ -151,6 +153,11 @@ namespace EDRoutePlanner
 			this.label1.TabIndex = 4;
 			this.label1.Text = "Amount (0 = max)";
 			// 
+			// columnHeader6
+			// 
+			this.columnHeader6.Text = "Price Sell";
+			this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			// 
 			// CommoditySelection
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,5 +191,6 @@ namespace EDRoutePlanner
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private System.Windows.Forms.ColumnHeader columnHeader6;
 	}
 }

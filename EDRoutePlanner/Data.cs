@@ -127,7 +127,8 @@ namespace EDRoutePlanner
 	{
 		public string commodity;
 		public DemandType demandType;
-		public int price;
+		public int priceSell;
+		public int priceBuy;
 		public int quantity;
 
 		public CommodityPrice() : this("") { }
