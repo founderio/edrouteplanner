@@ -134,7 +134,7 @@ namespace EDRoutePlanner
 			mainScreen.commoditySelection.stationData = stationData;
 			mainScreen.commoditySelection.nextStationData = nextStationData;
 			mainScreen.commoditySelection.maxCargo = mainScreen.pilotData.maxCargo;
-			mainScreen.commoditySelection.updateDisplay();
+			mainScreen.commoditySelection.UpdateDisplay();
 
 			if (mainScreen.commoditySelection.ShowDialog(mainScreen) == DialogResult.OK)
 			{

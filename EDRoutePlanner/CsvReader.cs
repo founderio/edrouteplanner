@@ -26,6 +26,7 @@ namespace EDRoutePlanner
 		private string path;
 
 		private TextReader reader;
+		private FileStream fs;
 
 		public CsvReader(string path)
 		{
@@ -36,7 +37,8 @@ namespace EDRoutePlanner
 		{
 			if (path != null && File.Exists(path))
 			{
-				reader = new StreamReader(path);
+				fs = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+				reader = new StreamReader(fs);
 			}
 		}
 
@@ -46,6 +48,8 @@ namespace EDRoutePlanner
 			{
 				reader.Close();
 				reader = null;
+				fs.Close();
+				fs = null;
 			}
 		}
 

@@ -34,10 +34,9 @@ namespace EDRoutePlanner
 		{
 			this.mainScreen = mainScreen;
 			InitializeComponent();
-			updateDisplay();
 		}
 
-		public void updateDisplay()
+		public void UpdateDisplay()
 		{
 			listView1.Items.Clear();
 			listView1.Groups.Clear();
@@ -94,6 +93,11 @@ namespace EDRoutePlanner
 			{
 				submit();
 			}
+		}
+
+		private void StationSelection_Load(object sender, EventArgs e)
+		{
+			this.Icon = Properties.Resources.Icon;
 		}
 	}
 }

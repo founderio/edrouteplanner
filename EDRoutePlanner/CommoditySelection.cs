@@ -38,39 +38,9 @@ namespace EDRoutePlanner
 		{
 			this.mainScreen = mainScreen;
 			InitializeComponent();
-			updateDisplay();
 		}
 
-		private void btnUseSelected_Click(object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.OK;
-		}
-
-		private void btnCancel_Click(object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.Cancel;
-		}
-
-		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if (listView1.SelectedItems.Count == 0)
-			{
-				btnUseSelected.Enabled = false;
-			}
-			else
-			{
-				btnUseSelected.Enabled = true;
-				selectedCommodity = listView1.SelectedItems[0].Text;
-			}
-		}
-
-		private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-		{
-			selectedAmount = (int)numericUpDown1.Value;
-			updateDisplay();
-		}
-
-		public void updateDisplay()
+		public void UpdateDisplay()
 		{
 			listView1.Items.Clear();
 			listView1.Groups.Clear();
@@ -132,6 +102,35 @@ namespace EDRoutePlanner
 			}
 		}
 
+		private void btnUseSelected_Click(object sender, EventArgs e)
+		{
+			this.DialogResult = DialogResult.OK;
+		}
+
+		private void btnCancel_Click(object sender, EventArgs e)
+		{
+			this.DialogResult = DialogResult.Cancel;
+		}
+
+		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (listView1.SelectedItems.Count == 0)
+			{
+				btnUseSelected.Enabled = false;
+			}
+			else
+			{
+				btnUseSelected.Enabled = true;
+				selectedCommodity = listView1.SelectedItems[0].Text;
+			}
+		}
+
+		private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+		{
+			selectedAmount = (int)numericUpDown1.Value;
+			UpdateDisplay();
+		}
+
 		private void listView1_DoubleClick(object sender, EventArgs e)
 		{
 			submit();
@@ -152,6 +151,11 @@ namespace EDRoutePlanner
 			{
 				submit();
 			}
+		}
+
+		private void CommoditySelection_Load(object sender, EventArgs e)
+		{
+			this.Icon = Properties.Resources.Icon;
 		}
 	}
 }

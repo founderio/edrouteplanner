@@ -84,14 +84,8 @@ namespace EDRoutePlanner
 		private string openFile(string previous)
 		{
 			OpenFileDialog ofd = new OpenFileDialog();
-			try
-			{
-				ofd.FileName = previous;
-				ofd.InitialDirectory = new FileInfo(previous).Directory.FullName;
-			}
-			catch (ArgumentException) { }
-			catch (PathTooLongException) { }
-			catch (NotSupportedException) { }
+			ofd.FileName = previous;
+			ofd.InitialDirectory = Util.GetFileDirectorySafe(previous);
 			if (ofd.ShowDialog(this) == DialogResult.OK)
 			{
 				return ofd.FileName;
@@ -100,6 +94,11 @@ namespace EDRoutePlanner
 			{
 				return previous;
 			}
+		}
+
+		private void DefaultsForm_Load(object sender, EventArgs e)
+		{
+			this.Icon = Properties.Resources.Icon;
 		}
 	}
 }

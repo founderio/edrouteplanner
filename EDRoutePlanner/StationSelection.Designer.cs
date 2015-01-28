@@ -60,7 +60,7 @@ namespace EDRoutePlanner
 			this.listView1.Location = new System.Drawing.Point(12, 12);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(260, 203);
-			this.listView1.TabIndex = 0;
+			this.listView1.TabIndex = 2;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
 			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -79,7 +79,7 @@ namespace EDRoutePlanner
 			this.btnCancel.Location = new System.Drawing.Point(197, 227);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
-			this.btnCancel.TabIndex = 1;
+			this.btnCancel.TabIndex = 0;
 			this.btnCancel.Text = "Cancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -90,7 +90,7 @@ namespace EDRoutePlanner
 			this.btnUseSelected.Location = new System.Drawing.Point(53, 227);
 			this.btnUseSelected.Name = "btnUseSelected";
 			this.btnUseSelected.Size = new System.Drawing.Size(138, 23);
-			this.btnUseSelected.TabIndex = 2;
+			this.btnUseSelected.TabIndex = 1;
 			this.btnUseSelected.Text = "Use Selected Station";
 			this.btnUseSelected.UseVisualStyleBackColor = true;
 			this.btnUseSelected.Click += new System.EventHandler(this.btnUseSelected_Click);
@@ -107,7 +107,9 @@ namespace EDRoutePlanner
 			this.Controls.Add(this.listView1);
 			this.MinimizeBox = false;
 			this.Name = "StationSelection";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Select a Station";
+			this.Load += new System.EventHandler(this.StationSelection_Load);
 			this.ResumeLayout(false);
 
 		}

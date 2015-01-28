@@ -67,7 +67,7 @@ namespace EDRoutePlanner
 			this.lblStationName.Location = new System.Drawing.Point(41, 16);
 			this.lblStationName.Name = "lblStationName";
 			this.lblStationName.Size = new System.Drawing.Size(134, 24);
-			this.lblStationName.TabIndex = 1;
+			this.lblStationName.TabIndex = 0;
 			this.lblStationName.Text = "Station Name";
 			this.lblStationName.DoubleClick += new System.EventHandler(this.lblStationName_DoubleClick);
 			// 
@@ -77,7 +77,7 @@ namespace EDRoutePlanner
 			this.lblSystemName.Location = new System.Drawing.Point(41, 3);
 			this.lblSystemName.Name = "lblSystemName";
 			this.lblSystemName.Size = new System.Drawing.Size(72, 13);
-			this.lblSystemName.TabIndex = 2;
+			this.lblSystemName.TabIndex = 1;
 			this.lblSystemName.Text = "System Name";
 			// 
 			// listView1
@@ -93,7 +93,7 @@ namespace EDRoutePlanner
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(451, 85);
-			this.listView1.TabIndex = 3;
+			this.listView1.TabIndex = 4;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
 			// 
@@ -126,7 +126,7 @@ namespace EDRoutePlanner
 			this.btnInsertDestination.Location = new System.Drawing.Point(3, 75);
 			this.btnInsertDestination.Name = "btnInsertDestination";
 			this.btnInsertDestination.Size = new System.Drawing.Size(35, 23);
-			this.btnInsertDestination.TabIndex = 8;
+			this.btnInsertDestination.TabIndex = 3;
 			this.toolTip1.SetToolTip(this.btnInsertDestination, "Insert a new destination after this one");
 			this.btnInsertDestination.UseVisualStyleBackColor = true;
 			this.btnInsertDestination.Click += new System.EventHandler(this.btnInsertDestination_Click);
@@ -138,7 +138,7 @@ namespace EDRoutePlanner
 			this.btnEvaluateOptions.Location = new System.Drawing.Point(3, 134);
 			this.btnEvaluateOptions.Name = "btnEvaluateOptions";
 			this.btnEvaluateOptions.Size = new System.Drawing.Size(35, 23);
-			this.btnEvaluateOptions.TabIndex = 7;
+			this.btnEvaluateOptions.TabIndex = 5;
 			this.toolTip1.SetToolTip(this.btnEvaluateOptions, "Evaluate Options");
 			this.btnEvaluateOptions.UseVisualStyleBackColor = true;
 			this.btnEvaluateOptions.Click += new System.EventHandler(this.btnEvaluateOptions_Click);
@@ -160,7 +160,7 @@ namespace EDRoutePlanner
 			this.btnDelTransaction.Location = new System.Drawing.Point(85, 134);
 			this.btnDelTransaction.Name = "btnDelTransaction";
 			this.btnDelTransaction.Size = new System.Drawing.Size(35, 23);
-			this.btnDelTransaction.TabIndex = 5;
+			this.btnDelTransaction.TabIndex = 7;
 			this.toolTip1.SetToolTip(this.btnDelTransaction, "Remove selected Transaction");
 			this.btnDelTransaction.UseVisualStyleBackColor = true;
 			this.btnDelTransaction.Click += new System.EventHandler(this.btnDelTransaction_Click);
@@ -171,7 +171,7 @@ namespace EDRoutePlanner
 			this.btnDelDestination.Location = new System.Drawing.Point(3, 46);
 			this.btnDelDestination.Name = "btnDelDestination";
 			this.btnDelDestination.Size = new System.Drawing.Size(35, 23);
-			this.btnDelDestination.TabIndex = 4;
+			this.btnDelDestination.TabIndex = 2;
 			this.toolTip1.SetToolTip(this.btnDelDestination, "Remove this destination");
 			this.btnDelDestination.UseVisualStyleBackColor = true;
 			this.btnDelDestination.Click += new System.EventHandler(this.btnDelDestination_Click);

@@ -64,13 +64,15 @@ namespace EDRoutePlanner
 		public MainScreen()
 		{
 			loadDefaults();
-			loadPilotData();
+
 			stationControls = new List<StationControl>();
 			InitializeComponent();
-			forceReloadData();
 			stationSelection = new StationSelection(this);
 			commoditySelection = new CommoditySelection(this);
 			defaultsForm = new DefaultsForm(this);
+
+			forceReloadData();
+			loadPilotData();
 			loadRouteData();
 			updateDisplay();
 		}
@@ -94,6 +96,21 @@ namespace EDRoutePlanner
 
 			}
 			data = new Data(dsStations, dsCommodities);
+			stationSelection.UpdateDisplay();
+			commoditySelection.UpdateDisplay();
+
+			fswCommodityData.Path = Util.GetFileDirectorySafe(defaults.pathCommodityData);
+			fswCommodityData.Filter = Util.GetFileNameSafe(defaults.pathCommodityData);
+			fswSystemData.Path = Util.GetFileDirectorySafe(defaults.pathStationData);
+			fswSystemData.Filter = Util.GetFileNameSafe(defaults.pathStationData);
+		}
+
+		public void reloadData()
+		{
+			data.Reload();
+			stationSelection.UpdateDisplay();
+			commoditySelection.UpdateDisplay();
+			updateDisplay();
 		}
 
 		public void updateDisplay()
@@ -273,7 +290,7 @@ namespace EDRoutePlanner
 
 		private void btnReloadTradeData_Click(object sender, EventArgs e)
 		{
-			data.Reload();
+			reloadData();
 		}
 
 		private void btnAddDestination_Click(object sender, EventArgs e)
@@ -325,7 +342,18 @@ namespace EDRoutePlanner
 
 		private void MainScreen_Load(object sender, EventArgs e)
 		{
-			lblCopyright.Text = String.Format("{0} {1} - {2}", BuildInfo.AssemblyTitle, BuildInfo.AssemblyVersion, BuildInfo.AssemblyCopyright);
+			lblCopyright.Text = String.Format("{0} {1}\n{2}", BuildInfo.AssemblyTitle, BuildInfo.AssemblyVersion, BuildInfo.AssemblyCopyright);
+			this.Icon = Properties.Resources.Icon;
+		}
+
+		private void fswCommodityData_Changed(object sender, FileSystemEventArgs e)
+		{
+			reloadData();
+		}
+
+		private void fswSystemData_Changed(object sender, FileSystemEventArgs e)
+		{
+			reloadData();
 		}
 
 

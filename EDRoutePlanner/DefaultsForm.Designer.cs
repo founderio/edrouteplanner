@@ -85,7 +85,7 @@ namespace EDRoutePlanner
 			this.btnReload.Location = new System.Drawing.Point(12, 96);
 			this.btnReload.Name = "btnReload";
 			this.btnReload.Size = new System.Drawing.Size(157, 23);
-			this.btnReload.TabIndex = 2;
+			this.btnReload.TabIndex = 7;
 			this.btnReload.Text = "Reload Defaults from Disk";
 			this.btnReload.UseVisualStyleBackColor = true;
 			this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
@@ -97,7 +97,7 @@ namespace EDRoutePlanner
 			this.tbStationData.Location = new System.Drawing.Point(166, 41);
 			this.tbStationData.Name = "tbStationData";
 			this.tbStationData.Size = new System.Drawing.Size(263, 20);
-			this.tbStationData.TabIndex = 3;
+			this.tbStationData.TabIndex = 4;
 			// 
 			// cbTypeStation
 			// 
@@ -110,7 +110,7 @@ namespace EDRoutePlanner
 			this.cbTypeStation.Location = new System.Drawing.Point(497, 41);
 			this.cbTypeStation.Name = "cbTypeStation";
 			this.cbTypeStation.Size = new System.Drawing.Size(121, 21);
-			this.cbTypeStation.TabIndex = 4;
+			this.cbTypeStation.TabIndex = 6;
 			// 
 			// tbCommodityData
 			// 
@@ -119,7 +119,7 @@ namespace EDRoutePlanner
 			this.tbCommodityData.Location = new System.Drawing.Point(166, 12);
 			this.tbCommodityData.Name = "tbCommodityData";
 			this.tbCommodityData.Size = new System.Drawing.Size(263, 20);
-			this.tbCommodityData.TabIndex = 5;
+			this.tbCommodityData.TabIndex = 2;
 			// 
 			// label1
 			// 
@@ -127,7 +127,7 @@ namespace EDRoutePlanner
 			this.label1.Location = new System.Drawing.Point(29, 15);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(131, 13);
-			this.label1.TabIndex = 6;
+			this.label1.TabIndex = 0;
 			this.label1.Text = "Load commodity data from";
 			// 
 			// label2
@@ -137,7 +137,7 @@ namespace EDRoutePlanner
 			this.label2.Location = new System.Drawing.Point(473, 15);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(88, 13);
-			this.label2.TabIndex = 7;
+			this.label2.TabIndex = 0;
 			this.label2.Text = "as Cmdrs Log txt.";
 			// 
 			// btnBrowseCommodity
@@ -146,7 +146,7 @@ namespace EDRoutePlanner
 			this.btnBrowseCommodity.Location = new System.Drawing.Point(435, 10);
 			this.btnBrowseCommodity.Name = "btnBrowseCommodity";
 			this.btnBrowseCommodity.Size = new System.Drawing.Size(32, 23);
-			this.btnBrowseCommodity.TabIndex = 8;
+			this.btnBrowseCommodity.TabIndex = 3;
 			this.btnBrowseCommodity.Text = "...";
 			this.btnBrowseCommodity.UseVisualStyleBackColor = true;
 			this.btnBrowseCommodity.Click += new System.EventHandler(this.btnBrowseCommodity_Click);
@@ -157,7 +157,7 @@ namespace EDRoutePlanner
 			this.buttonBrowseStation.Location = new System.Drawing.Point(435, 39);
 			this.buttonBrowseStation.Name = "buttonBrowseStation";
 			this.buttonBrowseStation.Size = new System.Drawing.Size(32, 23);
-			this.buttonBrowseStation.TabIndex = 9;
+			this.buttonBrowseStation.TabIndex = 5;
 			this.buttonBrowseStation.Text = "...";
 			this.buttonBrowseStation.UseVisualStyleBackColor = true;
 			this.buttonBrowseStation.Click += new System.EventHandler(this.buttonBrowseStation_Click);
@@ -169,7 +169,7 @@ namespace EDRoutePlanner
 			this.label3.Location = new System.Drawing.Point(473, 44);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(18, 13);
-			this.label3.TabIndex = 10;
+			this.label3.TabIndex = 0;
 			this.label3.Text = "as";
 			// 
 			// label4
@@ -178,7 +178,7 @@ namespace EDRoutePlanner
 			this.label4.Location = new System.Drawing.Point(12, 44);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(148, 13);
-			this.label4.TabIndex = 11;
+			this.label4.TabIndex = 0;
 			this.label4.Text = "Load station && trade data from";
 			// 
 			// DefaultsForm
@@ -200,8 +200,12 @@ namespace EDRoutePlanner
 			this.Controls.Add(this.btnReload);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.btnCancel);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.MinimizeBox = false;
 			this.Name = "DefaultsForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Defaults";
+			this.Load += new System.EventHandler(this.DefaultsForm_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -61,7 +61,7 @@ namespace EDRoutePlanner
 			this.btnUseSelected.Location = new System.Drawing.Point(255, 500);
 			this.btnUseSelected.Name = "btnUseSelected";
 			this.btnUseSelected.Size = new System.Drawing.Size(138, 23);
-			this.btnUseSelected.TabIndex = 4;
+			this.btnUseSelected.TabIndex = 1;
 			this.btnUseSelected.Text = "Use Selected Commodity";
 			this.btnUseSelected.UseVisualStyleBackColor = true;
 			this.btnUseSelected.Click += new System.EventHandler(this.btnUseSelected_Click);
@@ -73,7 +73,7 @@ namespace EDRoutePlanner
 			this.btnCancel.Location = new System.Drawing.Point(399, 500);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
-			this.btnCancel.TabIndex = 3;
+			this.btnCancel.TabIndex = 0;
 			this.btnCancel.Text = "Cancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -94,7 +94,7 @@ namespace EDRoutePlanner
 			this.listView1.Location = new System.Drawing.Point(12, 12);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(462, 482);
-			this.listView1.TabIndex = 5;
+			this.listView1.TabIndex = 2;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
 			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -138,7 +138,7 @@ namespace EDRoutePlanner
             0});
 			this.numericUpDown1.Name = "numericUpDown1";
 			this.numericUpDown1.Size = new System.Drawing.Size(76, 20);
-			this.numericUpDown1.TabIndex = 6;
+			this.numericUpDown1.TabIndex = 3;
 			this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
 			// 
 			// label1
@@ -148,7 +148,7 @@ namespace EDRoutePlanner
 			this.label1.Location = new System.Drawing.Point(78, 505);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(89, 13);
-			this.label1.TabIndex = 7;
+			this.label1.TabIndex = 4;
 			this.label1.Text = "Amount (0 = max)";
 			// 
 			// CommoditySelection
@@ -163,7 +163,9 @@ namespace EDRoutePlanner
 			this.Controls.Add(this.btnCancel);
 			this.MinimizeBox = false;
 			this.Name = "CommoditySelection";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Select a Commodity";
+			this.Load += new System.EventHandler(this.CommoditySelection_Load);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
