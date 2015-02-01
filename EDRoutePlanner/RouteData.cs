@@ -19,6 +19,19 @@ using System.Text;
 
 namespace EDRoutePlanner
 {
+	public class Route
+	{
+		public String name;
+		public List<Destination> destinations;
+		public bool loopRoute = false;
+
+		public Route()
+		{
+			this.name = "New Route";
+			destinations = new List<Destination>();
+		}
+	}
+
 	public class Transaction
 	{
 		public string commodity;
@@ -26,6 +39,18 @@ namespace EDRoutePlanner
 
 		public Transaction()
 		{
+		}
+
+		public int GetAmount(int maxAmount)
+		{
+			if (amount == 0)
+			{
+				return maxAmount;
+			}
+			else
+			{
+				return amount;
+			}
 		}
 	}
 }

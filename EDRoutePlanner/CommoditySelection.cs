@@ -27,7 +27,6 @@ namespace EDRoutePlanner
 	{
 		public string selectedCommodity;
 		public int selectedAmount;
-		public int maxCargo;
 
 		public MainScreen mainScreen;
 
@@ -81,7 +80,7 @@ namespace EDRoutePlanner
 							}
 						}
 					}
-					int profit = profitPer * (selectedAmount == 0 ? maxCargo : selectedAmount);
+					int profit = profitPer * (selectedAmount == 0 ? mainScreen.pilotData.maxCargo : selectedAmount);
 
 					if (profitPer != 0)
 					{

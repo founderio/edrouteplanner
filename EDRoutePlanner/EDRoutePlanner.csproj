@@ -145,7 +145,7 @@
     <Compile Include="StationSelection.Designer.cs">
       <DependentUpon>StationSelection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transaction.cs" />
+    <Compile Include="RouteData.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -67,11 +67,11 @@ namespace EDRoutePlanner
 					}
 				}
 
-				int profit = profitPer * transaction.amount;
+				int profit = profitPer * transaction.GetAmount(mainScreen.pilotData.maxCargo);
 				overallProfit += profit;
 				ListViewItem li = new ListViewItem(new string[] {
 					transaction.commodity,
-					transaction.amount.ToString("N0"),
+					transaction.amount == 0 ? String.Format("MAX ({0:0})", mainScreen.pilotData.maxCargo) : transaction.amount.ToString("N0"),
 					profitPer.ToString("N0"),
 					profit.ToString("N0")
 				});
@@ -132,17 +132,12 @@ namespace EDRoutePlanner
 			}
 			mainScreen.commoditySelection.stationData = stationData;
 			mainScreen.commoditySelection.nextStationData = nextStationData;
-			mainScreen.commoditySelection.maxCargo = mainScreen.pilotData.maxCargo;
 			mainScreen.commoditySelection.UpdateDisplay();
 
 			if (mainScreen.commoditySelection.ShowDialog(mainScreen) == DialogResult.OK)
 			{
 				Transaction ta = new Transaction();
 				ta.amount = mainScreen.commoditySelection.selectedAmount;
-				if (ta.amount == 0)
-				{
-					ta.amount = mainScreen.pilotData.maxCargo;
-				}
 				ta.commodity = mainScreen.commoditySelection.selectedCommodity;
 				destination.transactions.Add(ta);
 				mainScreen.updateDisplay();

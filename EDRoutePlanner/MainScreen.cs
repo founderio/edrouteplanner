@@ -35,18 +35,6 @@ namespace EDRoutePlanner
 		private List<Route> routes;
 		private Route currentRoute;
 
-		public class Route
-		{
-			public String name;
-			public List<Destination> destinations;
-			public bool loopRoute = false;
-
-			public Route()
-			{
-				this.name = "New Route";
-				destinations = new List<Destination>();
-			}
-		}
 
 		private List<StationControl> stationControls;
 
@@ -71,9 +59,10 @@ namespace EDRoutePlanner
 			commoditySelection = new CommoditySelection(this);
 			defaultsForm = new DefaultsForm(this);
 
-			forceReloadData();
 			loadPilotData();
 			loadRouteData();
+
+			forceReloadData();
 			updateDisplay();
 		}
 
