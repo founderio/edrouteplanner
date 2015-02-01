@@ -62,7 +62,7 @@ namespace EDRoutePlanner
 				StationData stationData = systemData.GetStation(station);
 				if (stationData == null)
 				{
-					stationData = new StationData(station);
+					stationData = new StationData(system, station);
 					systemData.stations[station] = stationData;
 				}
 

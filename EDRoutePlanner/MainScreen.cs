@@ -39,6 +39,7 @@ namespace EDRoutePlanner
 		private StationSelection stationSelection;
 		public CommoditySelection commoditySelection;
 		private DefaultsForm defaultsForm;
+		private EvaluateDestinationForm evaluateDestinationForm;
 
 		public MainScreen()
 		{
@@ -49,6 +50,7 @@ namespace EDRoutePlanner
 			stationSelection = new StationSelection(this);
 			commoditySelection = new CommoditySelection(this);
 			defaultsForm = new DefaultsForm(this);
+			evaluateDestinationForm = new EvaluateDestinationForm(this);
 
 			loadPilotData();
 			loadRouteData();
@@ -221,9 +223,7 @@ namespace EDRoutePlanner
 		{
 			if (stationSelection.ShowDialog(this) == DialogResult.OK)
 			{
-				Destination dest = new Destination();
-				dest.system = stationSelection.selectedSystem;
-				dest.station = stationSelection.selectedStation;
+				Destination dest = new Destination(stationSelection.selectedSystem, stationSelection.selectedStation);
 				currentRoute.destinations.Insert(index + 1, dest);
 				updateDisplay();
 			}
@@ -231,7 +231,10 @@ namespace EDRoutePlanner
 
 		public void evaluateOptions(int index)
 		{
-
+			evaluateDestinationForm.index = index;
+			evaluateDestinationForm.UpdateDisplay();
+			evaluateDestinationForm.ShowDialog(this);
+			updateDisplay();
 		}
 
 		public Destination getNextDestination(int index)

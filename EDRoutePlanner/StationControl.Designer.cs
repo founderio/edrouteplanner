@@ -82,6 +82,9 @@ namespace EDRoutePlanner
 			// 
 			// listView1
 			// 
+			this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -133,7 +136,7 @@ namespace EDRoutePlanner
 			// 
 			// btnEvaluateOptions
 			// 
-			this.btnEvaluateOptions.Enabled = false;
+			this.btnEvaluateOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btnEvaluateOptions.Image = global::EDRoutePlanner.Properties.Resources.compass;
 			this.btnEvaluateOptions.Location = new System.Drawing.Point(3, 134);
 			this.btnEvaluateOptions.Name = "btnEvaluateOptions";
@@ -145,6 +148,7 @@ namespace EDRoutePlanner
 			// 
 			// btnAddTransaction
 			// 
+			this.btnAddTransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btnAddTransaction.Image = global::EDRoutePlanner.Properties.Resources.insert_row;
 			this.btnAddTransaction.Location = new System.Drawing.Point(44, 134);
 			this.btnAddTransaction.Name = "btnAddTransaction";
@@ -156,6 +160,7 @@ namespace EDRoutePlanner
 			// 
 			// btnDelTransaction
 			// 
+			this.btnDelTransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btnDelTransaction.Image = global::EDRoutePlanner.Properties.Resources.delete_row;
 			this.btnDelTransaction.Location = new System.Drawing.Point(85, 134);
 			this.btnDelTransaction.Name = "btnDelTransaction";

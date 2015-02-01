@@ -76,6 +76,18 @@ namespace EDRoutePlanner
 				return systemData.GetStation(station);
 			}
 		}
+
+		public List<StationData> Stations
+		{
+			get
+			{
+				List<StationData> stations = new List<StationData>();
+				foreach(SystemData system in systems.Values) {
+					stations.AddRange(system.stations.Values);
+				}
+				return stations;
+			}
+		}
 	}
 
 	public class SystemData
@@ -101,16 +113,18 @@ namespace EDRoutePlanner
 
 	public class StationData
 	{
+		public string system;
 		public string name;
 		public Dictionary<string, CommodityPrice> commodityData;
 		public string economy;
 		public string government;
 		public string faction;
 
-		public StationData() : this("") { }
+		public StationData() : this("", "") { }
 
-		public StationData(string name)
+		public StationData(string system, string name)
 		{
+			this.system = system;
 			this.name = name;
 			this.commodityData = new Dictionary<string, CommodityPrice>();
 		}
@@ -120,6 +134,27 @@ namespace EDRoutePlanner
 			CommodityPrice price = null;
 			commodityData.TryGetValue(commodity, out price);
 			return price;
+		}
+
+		public override bool Equals(object obj)
+		{
+			// Just to be sure, we will have the Equals method here.
+
+			StationData other = obj as StationData;
+			if (obj == null)
+			{
+				return false;
+			}
+			if (this.system != other.system)
+			{
+				return false;
+			}
+			if (this.name != other.name)
+			{
+				return false;
+			}
+			// Disregards prices & other data as the *should* not change.
+			return true;
 		}
 	}
 

@@ -42,6 +42,12 @@ namespace EDRoutePlanner
 		{
 		}
 
+		public Transaction(string commodity, int amount)
+		{
+			this.commodity = commodity;
+			this.amount = amount;
+		}
+
 		public int GetAmount(int maxAmount)
 		{
 			if (amount == 0)

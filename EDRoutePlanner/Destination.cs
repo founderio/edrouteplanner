@@ -30,5 +30,25 @@ namespace EDRoutePlanner
 		{
 			transactions = new List<Transaction>();
 		}
+
+		public Destination(string system, string station): this()
+		{
+			this.system = system;
+			this.station = station;
+		}
+
+		public Destination(StationData station)
+			: this()
+		{
+			this.system = station.system;
+			this.station = station.name;
+		}
+
+		public Destination(Destination destination)
+			: this()
+		{
+			this.system = destination.system;
+			this.station = destination.station;
+		}
 	}
 }

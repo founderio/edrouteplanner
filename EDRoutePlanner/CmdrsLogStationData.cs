@@ -78,7 +78,7 @@ namespace EDRoutePlanner
 				{
 					CmdrsLogDataReader.Section stationSection = systemSection.subsections[station];
 
-					StationData stationData = new StationData(station);
+					StationData stationData = new StationData(system, station);
 					sysData.stations[station] = stationData;
 					stationSection.dictionary.TryGetValue("economy", out stationData.economy);
 					stationSection.dictionary.TryGetValue("government", out stationData.government);
