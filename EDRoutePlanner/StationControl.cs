@@ -55,33 +55,32 @@ namespace EDRoutePlanner
 
 			foreach (Transaction transaction in destination.transactions)
 			{
-				int profitPer = 0;
-
-				if (stationData != null && nextStationData != null)
+				CommodityPrice ourPrice = null;
+				CommodityPrice theirPrice = null;
+				if (stationData != null)
 				{
-					CommodityPrice ourPrice = stationData.GetPrice(transaction.commodity);
-					CommodityPrice theirPrice = nextStationData.GetPrice(transaction.commodity);
-					if (ourPrice != null && theirPrice != null && theirPrice.priceSell > 0 && ourPrice.priceBuy > 0)
+					ourPrice = stationData.GetPrice(transaction.commodity);
+					if (nextStationData != null)
 					{
-						profitPer = theirPrice.priceSell - ourPrice.priceBuy;
+						theirPrice = nextStationData.GetPrice(transaction.commodity);
 					}
 				}
+				ComparedCommodity compared = new ComparedCommodity(transaction.commodity, transaction.GetAmount(mainScreen.pilotData.maxCargo), ourPrice, theirPrice);
 
-				int profit = profitPer * transaction.GetAmount(mainScreen.pilotData.maxCargo);
-				overallProfit += profit;
+				overallProfit += compared.profit;
 				ListViewItem li = new ListViewItem(new string[] {
 					transaction.commodity,
 					transaction.amount == 0 ? String.Format("MAX ({0:0})", mainScreen.pilotData.maxCargo) : transaction.amount.ToString("N0"),
-					profitPer.ToString("N0"),
-					profit.ToString("N0")
+					compared.ProfitPer,
+					compared.Profit
 				});
 
-				if (profit == 0)
+				if (compared.profitPer == 0)
 				{
 					li.BackColor = Color.Yellow;
 					li.ForeColor = Color.OrangeRed;
 				}
-				else if (profit < 0)
+				else if (compared.profitPer < 0)
 				{
 					li.BackColor = Color.Red;
 					li.ForeColor = Color.Yellow;
