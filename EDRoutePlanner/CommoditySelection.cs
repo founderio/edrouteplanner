@@ -154,62 +154,6 @@ namespace EDRoutePlanner
 
 		private int sortedColumn = -1;
 
-		private class CommoditySorter : System.Collections.IComparer, IComparer<ListViewItem>
-		{
-			public CommoditySorterCriteria criteria = CommoditySorterCriteria.Group;
-			public SortOrder sortOrder;
-			public int Compare(ListViewItem x, ListViewItem y)
-			{
-				ComparedCommodity cx = (ComparedCommodity)x.Tag;
-				ComparedCommodity cy = (ComparedCommodity)y.Tag;
-
-				int returnVal = 0;
-
-				switch (criteria)
-				{
-					default:
-					case CommoditySorterCriteria.Group:
-						returnVal = string.Compare(x.Group.Header, y.Group.Header);
-						break;
-					case CommoditySorterCriteria.Commodity:
-						returnVal = string.Compare(cx.Commodity, cy.Commodity);
-						break;
-					case CommoditySorterCriteria.Demand:
-						returnVal = (int)cx.demand - (int)cy.demand;
-						break;
-					case CommoditySorterCriteria.PriceSell:
-						returnVal = cx.priceSell - cy.priceSell;
-						break;
-					case CommoditySorterCriteria.PriceBuy:
-						returnVal = cx.priceBuy - cy.priceBuy;
-						break;
-					case CommoditySorterCriteria.Profit:
-						returnVal = cx.profitPer - cy.profitPer;
-						break;
-				}
-				if (sortOrder == SortOrder.Descending)
-				{
-					returnVal *= -1;
-				}
-				return returnVal;
-			}
-
-			public int Compare(object x, object y)
-			{
-				return Compare((ListViewItem)x, (ListViewItem)y);
-			}
-		}
-
-		private enum CommoditySorterCriteria
-		{
-			Group,
-			Commodity,
-			Demand,
-			PriceSell,
-			PriceBuy,
-			Profit
-		}
-
 		private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
 		{
 			if (e.Column == sortedColumn)
@@ -259,10 +203,6 @@ namespace EDRoutePlanner
 						break;
 				}
 			}
-			//CommoditySorter newSorter = new CommoditySorter();
-			//newSorter.criteria = sorter.criteria;
-			//newSorter.sortOrder = sorter.sortOrder;
-			//sorter = newSorter;
 			listView1.ListViewItemSorter = sorter;
 			listView1.Sort();
 		}

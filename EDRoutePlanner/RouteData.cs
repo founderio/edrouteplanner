@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace EDRoutePlanner
 {
@@ -109,5 +110,77 @@ namespace EDRoutePlanner
 			get { return profit == 0 ? "" : profit.ToString("N0"); }
 		}
 
+	}
+
+	public class CommoditySorter : System.Collections.IComparer, IComparer<ListViewItem>, IComparer<ComparedCommodity>
+	{
+		public CommoditySorterCriteria criteria = CommoditySorterCriteria.Group;
+		public SortOrder sortOrder;
+		public int Compare(ListViewItem x, ListViewItem y)
+		{
+			if (criteria == CommoditySorterCriteria.Group)
+			{
+				int returnVal = 0;
+				returnVal = string.Compare(x.Group.Header, y.Group.Header);
+				if (sortOrder == SortOrder.Descending)
+				{
+					returnVal *= -1;
+				}
+				return returnVal;
+			}
+
+			ComparedCommodity cx = (ComparedCommodity)x.Tag;
+			ComparedCommodity cy = (ComparedCommodity)y.Tag;
+
+			return Compare(cx, cy);
+		}
+
+		public int Compare(object x, object y)
+		{
+			return Compare((ListViewItem)x, (ListViewItem)y);
+		}
+
+		public int Compare(ComparedCommodity cx, ComparedCommodity cy)
+		{
+			int returnVal = 0;
+			switch (criteria)
+			{
+				default:
+				case CommoditySorterCriteria.Group:
+					// Cannot compare what we don't have
+					returnVal = 0;
+					break;
+				case CommoditySorterCriteria.Commodity:
+					returnVal = string.Compare(cx.Commodity, cy.Commodity);
+					break;
+				case CommoditySorterCriteria.Demand:
+					returnVal = (int)cx.demand - (int)cy.demand;
+					break;
+				case CommoditySorterCriteria.PriceSell:
+					returnVal = cx.priceSell - cy.priceSell;
+					break;
+				case CommoditySorterCriteria.PriceBuy:
+					returnVal = cx.priceBuy - cy.priceBuy;
+					break;
+				case CommoditySorterCriteria.Profit:
+					returnVal = cx.profitPer - cy.profitPer;
+					break;
+			}
+			if (sortOrder == SortOrder.Descending)
+			{
+				returnVal *= -1;
+			}
+			return returnVal;
+		}
+	}
+
+	public enum CommoditySorterCriteria
+	{
+		Group,
+		Commodity,
+		Demand,
+		PriceSell,
+		PriceBuy,
+		Profit
 	}
 }
