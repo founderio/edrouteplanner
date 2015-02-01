@@ -53,4 +53,61 @@ namespace EDRoutePlanner
 			}
 		}
 	}
+
+	public class ComparedCommodity
+	{
+		public string commodity;
+		public DemandType demand;
+		public int priceSell;
+		public int priceBuy;
+		public int profitPer;
+		public int profit;
+
+		public ComparedCommodity(string commodity, int amount, CommodityPrice ourPrice, CommodityPrice theirPrice)
+		{
+			this.commodity = commodity;
+			if (ourPrice != null)
+			{
+				priceBuy = ourPrice.priceBuy;
+				priceSell = ourPrice.priceSell;
+				demand = ourPrice.demandType;
+				if (theirPrice != null && theirPrice.priceSell > 0 && ourPrice.priceBuy > 0)
+				{
+					profitPer = theirPrice.priceSell - ourPrice.priceBuy;
+				}
+			}
+			profit = profitPer * amount;
+		}
+
+		public string Commodity
+		{
+			get { return commodity; }
+		}
+
+		public string Demand
+		{
+			get { return demand.ToString(); }
+		}
+
+		public string PriceSell
+		{
+			get { return priceSell == 0 ? "" : priceSell.ToString("N0"); }
+		}
+
+		public string PriceBuy
+		{
+			get { return priceBuy == 0 ? "" : priceBuy.ToString("N0"); }
+		}
+
+		public string ProfitPer
+		{
+			get { return profitPer == 0 ? "" : profitPer.ToString("N0"); }
+		}
+
+		public string Profit
+		{
+			get { return profit == 0 ? "" : profit.ToString("N0"); }
+		}
+
+	}
 }

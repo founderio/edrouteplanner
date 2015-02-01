@@ -42,17 +42,23 @@ namespace EDRoutePlanner
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Windows.Forms.ColumnHeader columnHeader1;
+			System.Windows.Forms.ColumnHeader columnHeader2;
+			System.Windows.Forms.ColumnHeader columnHeader6;
+			System.Windows.Forms.ColumnHeader columnHeader3;
+			System.Windows.Forms.ColumnHeader columnHeader4;
+			System.Windows.Forms.ColumnHeader columnHeader5;
 			this.btnUseSelected = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.listView1 = new System.Windows.Forms.ListView();
-			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
-			this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+			columnHeader1 = new System.Windows.Forms.ColumnHeader();
+			columnHeader2 = new System.Windows.Forms.ColumnHeader();
+			columnHeader6 = new System.Windows.Forms.ColumnHeader();
+			columnHeader3 = new System.Windows.Forms.ColumnHeader();
+			columnHeader4 = new System.Windows.Forms.ColumnHeader();
+			columnHeader5 = new System.Windows.Forms.ColumnHeader();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -85,14 +91,13 @@ namespace EDRoutePlanner
 						| System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader6,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5});
+            columnHeader1,
+            columnHeader2,
+            columnHeader6,
+            columnHeader3,
+            columnHeader4,
+            columnHeader5});
 			this.listView1.FullRowSelect = true;
-			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.listView1.Location = new System.Drawing.Point(12, 12);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(526, 482);
@@ -101,33 +106,39 @@ namespace EDRoutePlanner
 			this.listView1.View = System.Windows.Forms.View.Details;
 			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
 			this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+			this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
 			this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
 			// 
 			// columnHeader1
 			// 
-			this.columnHeader1.Text = "Commodity";
-			this.columnHeader1.Width = 160;
+			columnHeader1.Text = "Commodity";
+			columnHeader1.Width = 160;
 			// 
 			// columnHeader2
 			// 
-			this.columnHeader2.Text = "Demand";
-			this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.columnHeader2.Width = 100;
+			columnHeader2.Text = "Demand";
+			columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			columnHeader2.Width = 100;
+			// 
+			// columnHeader6
+			// 
+			columnHeader6.Text = "Price Sell";
+			columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// columnHeader3
 			// 
-			this.columnHeader3.Text = "Price Buy";
-			this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			columnHeader3.Text = "Price Buy";
+			columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// columnHeader4
 			// 
-			this.columnHeader4.Text = "Profit per Unit";
-			this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			columnHeader4.Text = "Profit per Unit";
+			columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// columnHeader5
 			// 
-			this.columnHeader5.Text = "Profit";
-			this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			columnHeader5.Text = "Profit";
+			columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// numericUpDown1
 			// 
@@ -152,11 +163,6 @@ namespace EDRoutePlanner
 			this.label1.Size = new System.Drawing.Size(89, 13);
 			this.label1.TabIndex = 4;
 			this.label1.Text = "Amount (0 = max)";
-			// 
-			// columnHeader6
-			// 
-			this.columnHeader6.Text = "Price Sell";
-			this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// CommoditySelection
 			// 
@@ -184,13 +190,7 @@ namespace EDRoutePlanner
 		private System.Windows.Forms.Button btnUseSelected;
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.ListView listView1;
-		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.NumericUpDown numericUpDown1;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.ColumnHeader columnHeader2;
-		private System.Windows.Forms.ColumnHeader columnHeader3;
-		private System.Windows.Forms.ColumnHeader columnHeader4;
-		private System.Windows.Forms.ColumnHeader columnHeader5;
-		private System.Windows.Forms.ColumnHeader columnHeader6;
 	}
 }

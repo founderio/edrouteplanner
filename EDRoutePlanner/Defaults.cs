@@ -21,6 +21,10 @@ namespace EDRoutePlanner
 {
 	public class Defaults
 	{
+		public const string FILENAME_PILOT_DATA = "pilot.xml";
+		public const string FILENAME_ROUTES = "routes.xml";
+		public const string FILENAME_DEFAULTS = "defaults.xml";
+
 		public string pathCommodityData;
 		public string pathStationData;
 		public DataSourceType typeStationData;

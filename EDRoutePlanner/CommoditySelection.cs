@@ -33,10 +33,14 @@ namespace EDRoutePlanner
 		public StationData stationData;
 		public StationData nextStationData;
 
+		private CommoditySorter sorter;
+
 		public CommoditySelection(MainScreen mainScreen)
 		{
 			this.mainScreen = mainScreen;
 			InitializeComponent();
+			sorter = new CommoditySorter();
+			listView1.ListViewItemSorter = sorter;
 		}
 
 		public void UpdateDisplay()
@@ -49,59 +53,34 @@ namespace EDRoutePlanner
 
 				foreach (string commodity in commodityGroup.Value)
 				{
-					int profitPer = 0;
-					string priceBuy = "";
-					string priceSell = "";
-					string demand = "";
-					string profitPerStr = "";
-					string profitStr = "";
-
+					CommodityPrice ourPrice = null;
+					CommodityPrice theirPrice = null;
 					if (stationData != null)
 					{
-						CommodityPrice ourPrice = stationData.GetPrice(commodity);
-						if (ourPrice != null)
-						{
-							if (ourPrice.priceBuy > 0)
-							{
-								priceBuy = ourPrice.priceBuy.ToString("N0");
-							}
-							if (ourPrice.priceSell > 0)
-							{
-								priceSell = ourPrice.priceSell.ToString("N0");
-							}
-							demand = ourPrice.demandType.ToString();
-						}
+						ourPrice = stationData.GetPrice(commodity);
 						if (nextStationData != null)
 						{
-							CommodityPrice theirPrice = nextStationData.GetPrice(commodity);
-							if (ourPrice != null && theirPrice != null && theirPrice.priceSell > 0 && ourPrice.priceBuy > 0)
-							{
-								profitPer = theirPrice.priceSell - ourPrice.priceBuy;
-							}
+							theirPrice = nextStationData.GetPrice(commodity);
 						}
 					}
-					int profit = profitPer * (selectedAmount == 0 ? mainScreen.pilotData.maxCargo : selectedAmount);
-
-					if (profitPer != 0)
-					{
-						profitPerStr = profitPer.ToString("N0");
-						profitStr = profit.ToString("N0");
-					}
+					int amount = selectedAmount == 0 ? mainScreen.pilotData.maxCargo : selectedAmount;
+					ComparedCommodity compared = new ComparedCommodity(commodity, amount, ourPrice, theirPrice);
 
 					ListViewItem li = new ListViewItem(new string[] {
-						commodity,
-						demand,
-						priceSell,
-						priceBuy,
-						profitPerStr,
-						profitStr
+						compared.Commodity,
+						compared.Demand,
+						compared.PriceSell,
+						compared.PriceBuy,
+						compared.ProfitPer,
+						compared.Profit
 					}, group);
-					if (profit == 0)
+					li.Tag = compared;
+					if (compared.profitPer == 0)
 					{
 						//li.BackColor = Color.Yellow;
 						//li.ForeColor = Color.OrangeRed;
 					}
-					else if (profit < 0)
+					else if (compared.profitPer < 0)
 					{
 						li.BackColor = Color.Red;
 						li.ForeColor = Color.Yellow;
@@ -171,6 +150,121 @@ namespace EDRoutePlanner
 		private void CommoditySelection_Load(object sender, EventArgs e)
 		{
 			this.Icon = Properties.Resources.Icon;
+		}
+
+		private int sortedColumn = -1;
+
+		private class CommoditySorter : System.Collections.IComparer, IComparer<ListViewItem>
+		{
+			public CommoditySorterCriteria criteria = CommoditySorterCriteria.Group;
+			public SortOrder sortOrder;
+			public int Compare(ListViewItem x, ListViewItem y)
+			{
+				ComparedCommodity cx = (ComparedCommodity)x.Tag;
+				ComparedCommodity cy = (ComparedCommodity)y.Tag;
+
+				int returnVal = 0;
+
+				switch (criteria)
+				{
+					default:
+					case CommoditySorterCriteria.Group:
+						returnVal = string.Compare(x.Group.Header, y.Group.Header);
+						break;
+					case CommoditySorterCriteria.Commodity:
+						returnVal = string.Compare(cx.Commodity, cy.Commodity);
+						break;
+					case CommoditySorterCriteria.Demand:
+						returnVal = (int)cx.demand - (int)cy.demand;
+						break;
+					case CommoditySorterCriteria.PriceSell:
+						returnVal = cx.priceSell - cy.priceSell;
+						break;
+					case CommoditySorterCriteria.PriceBuy:
+						returnVal = cx.priceBuy - cy.priceBuy;
+						break;
+					case CommoditySorterCriteria.Profit:
+						returnVal = cx.profitPer - cy.profitPer;
+						break;
+				}
+				if (sortOrder == SortOrder.Descending)
+				{
+					returnVal *= -1;
+				}
+				return returnVal;
+			}
+
+			public int Compare(object x, object y)
+			{
+				return Compare((ListViewItem)x, (ListViewItem)y);
+			}
+		}
+
+		private enum CommoditySorterCriteria
+		{
+			Group,
+			Commodity,
+			Demand,
+			PriceSell,
+			PriceBuy,
+			Profit
+		}
+
+		private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+		{
+			if (e.Column == sortedColumn)
+			{
+				if (sorter.sortOrder == SortOrder.None)
+				{
+					listView1.ShowGroups = false;
+					sorter.sortOrder = SortOrder.Ascending;
+				}
+				else if (sorter.sortOrder == SortOrder.Ascending)
+				{
+					listView1.ShowGroups = false;
+					sorter.sortOrder = SortOrder.Descending;
+				}
+				else
+				{
+					listView1.ShowGroups = true;
+					sorter.sortOrder = SortOrder.None;
+					sorter.criteria = CommoditySorterCriteria.Group;
+					UpdateDisplay();
+				}
+			}
+			else
+			{
+				sortedColumn = e.Column;
+				sorter.sortOrder = SortOrder.Ascending;
+				listView1.ShowGroups = false;
+				switch (e.Column)
+				{
+					case 0:
+						sorter.criteria = CommoditySorterCriteria.Commodity;
+						break;
+					case 1:
+						sorter.criteria = CommoditySorterCriteria.Demand;
+						break;
+					case 2:
+						sorter.criteria = CommoditySorterCriteria.PriceSell;
+						break;
+					case 3:
+						sorter.criteria = CommoditySorterCriteria.PriceBuy;
+						break;
+					case 4:
+					case 5:
+						sorter.criteria = CommoditySorterCriteria.Profit;
+						break;
+					default:
+						break;
+				}
+			}
+			//CommoditySorter newSorter = new CommoditySorter();
+			//newSorter.criteria = sorter.criteria;
+			//newSorter.sortOrder = sorter.sortOrder;
+			//sorter = newSorter;
+			listView1.ListViewItemSorter = sorter;
+			listView1.Sort();
 		}
 	}
 }

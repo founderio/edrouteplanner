@@ -27,27 +27,18 @@ namespace EDRoutePlanner
 {
 	public partial class MainScreen : Form
 	{
-		private const string FILENAME_PILOT_DATA = "pilot.xml";
-		private const string FILENAME_ROUTES = "routes.xml";
-		private const string FILENAME_DEFAULTS = "defaults.xml";
-
-
-		private List<Route> routes;
-		private Route currentRoute;
-
-
-		private List<StationControl> stationControls;
+		public List<Route> routes;
+		public Route currentRoute;
+		public Defaults defaults;
+		public PilotData pilotData;
+		public Data data;
 
 		public int totalProfit = 0;
 
-		public Defaults defaults;
-		public PilotData pilotData;
-
-		public Data data;
-
-		public StationSelection stationSelection;
+		private List<StationControl> stationControls;
+		private StationSelection stationSelection;
 		public CommoditySelection commoditySelection;
-		public DefaultsForm defaultsForm;
+		private DefaultsForm defaultsForm;
 
 		public MainScreen()
 		{
@@ -68,10 +59,8 @@ namespace EDRoutePlanner
 
 		public void forceReloadData()
 		{
-			IDataSourceCommodities dsCommodities;
+			IDataSourceCommodities dsCommodities = new CmdrsLogCommoditiesData(defaults.pathCommodityData);
 			IDataSourceStations dsStations;
-			CmdrsLogCommoditiesData cmdrsLogData = new CmdrsLogCommoditiesData(defaults.pathCommodityData);
-			dsCommodities = cmdrsLogData;
 
 			switch (defaults.typeStationData)
 			{
@@ -177,35 +166,34 @@ namespace EDRoutePlanner
 			writer.Close();
 		}
 
-
 		public void saveRouteData()
 		{
-			saveFile(FILENAME_ROUTES, routes);
+			saveFile(Defaults.FILENAME_ROUTES, routes);
 		}
 
 		public void savePilotData()
 		{
-			saveFile(FILENAME_PILOT_DATA, pilotData);
+			saveFile(Defaults.FILENAME_PILOT_DATA, pilotData);
 		}
 
 		public void saveDefaults()
 		{
-			saveFile(FILENAME_DEFAULTS, defaults);
+			saveFile(Defaults.FILENAME_DEFAULTS, defaults);
 		}
 
 		public void loadRouteData()
 		{
-			routes = loadFile<List<Route>>(FILENAME_ROUTES);
+			routes = loadFile<List<Route>>(Defaults.FILENAME_ROUTES);
 		}
 
 		public void loadPilotData()
 		{
-			pilotData = loadFile<PilotData>(FILENAME_PILOT_DATA);
+			pilotData = loadFile<PilotData>(Defaults.FILENAME_PILOT_DATA);
 		}
 
 		public void loadDefaults()
 		{
-			defaults = loadFile<Defaults>(FILENAME_DEFAULTS);
+			defaults = loadFile<Defaults>(Defaults.FILENAME_DEFAULTS);
 		}
 
 		#endregion Persistence
